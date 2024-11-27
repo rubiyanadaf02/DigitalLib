@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            background-color: #fdd2a3; /* Soft apricot background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;
+            background-color: white;
+        }
+        .image-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .image-section img {
+            width: 410px;
+            height: 470px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .image-section h1 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .content-section {
+            max-height: calc(100vh - 100px); /* Adjusted max-height to fit footer */
+            overflow-y: auto; /* Enable scrolling for the content */
+            margin-bottom: 20px;
+        }
+
+        /* Hide the scrollbar but allow scrolling */
+        .content-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .content-section {
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .article-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-container h2 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            margin-bottom: 10px;
+        }
+
+        .article-container h3 {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 10px;
+        }
+
+        .article-container p {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0;
+            flex: 1; /* Allows the paragraph to take up the remaining space */
+        }
+
+        .article-image {
+            width: 250px;
+            height: 200px;
+            margin-left: 20px;
+            border-radius: 20px;
+        }
+
+        .footer {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Image and Heading -->
+        <div class="image-section">
+            <img src="\static\articlemainpic2.jpg" alt="Top Image">
+            <h1>History of War<br>Discover the politics,mechanics,strategies and machines of war.</h1>
+        </div>
+
+        <!-- Content Section with Articles -->
+        <div class="content-section">
+            <div class="article-container">
+                <div>
+              
+                    <h3>England vs Scotland the first battle</h3>
+                    <p>The red brick Roman walls of Carlisle loomed high over Cuthbert.
+                        The bishop of Lindisfarne had only arrived the day before, 
+                        after a long and weary journey, and already his worthy hosts
+                        insisted that he come to see a fountain, built by the long-gone
+                        Romans and set into the city wall, that still flung water into the air.
+                        "Bishop Cuthbert, this way," said one. "The Roman fountain is just here."
+                        But as he turned to look at it, Cuthbert went pale. 
+                        As if on the verge of fainting, he grabbed his staff and leant on it.
+            </p>
+                </div>
+                <img src="\static\articlepic11.jpg" alt="Article Image 1" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+             
+                    <h3>Welcome</h3>
+                    <p>Editor-in-Chief ritain's Home Guard has long helf the unfair reputation of 
+                     being rag-tag,hapless,bumbling but endearing volunteers (1968-77). In recent years
+                    the real history of these units has been rediscovere,including the truly essential,
+                    dangerous and often secretive nature of the Guard's role in the country's defences.<br>
+                    From protecting key industry and infrastructure from enemy paratroopers,to carrying out 
+                    covert patrols from hideen bunkers,hindreds of thousands of men ....</p>
+                </div>
+                <img src="\static\articlepic12.jpg" alt="Article Image 2" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3>Time line of operation weserubung</h3>
+                    <p>14 December 1939 - 1 March 1940<br>
+                     PLANNING INVASION<br>
+                     German command devises Operation Weserubung,an ambitious plan to invade Norway and 
+                    Denmark simulteneously with landings from Narvik to Copenhagen,spreading the entire sea
+                    the nazis aim to capture the Danish and Norwwgian governments on the first day so the Allies
+                    have no chance of contesting the attack</p>
+                </div>
+                <img src="\static\articlepic13.jpg" alt="Article Image 3" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                 
+                    <h3>1918 The spring offensive part-1</h3>
+                    <p>On 20 March 1918 general Marie-Emile fayolle,who was to lead the Allied reserves that engaged
+                      and halted 'Operation Michael',the first strike of the German 1918 Spring Offensive, noted in his diary,
+                      "More and more it seems to be confirmed that the Boche will not attack".In their shattering offensive that
+                      commenced the next morning,General Erich Ludendorff's armies would secure that battlefield victory-surprise.<br>
+                      Several other factors facilitated their early success.First,it was a matter of scale; an attack with 74 infantry
+                      divisions  along an 80-kilometer(50-mile) front was the largest seen on the Western Front since the battles of 1914. 
+                     </p>                
+                </div>
+                <img src="\static\articlepic14.jpg" alt="Article Image 4" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3>1918 The spring offensive part-2</h3>
+                    <p>After'Operation Michael'was halted in front of Amiens in early April 1918,General Erich Ludendorff would continue to
+                      rain blows on the Allied lines - four in all between April and mid-July.The first of these.'Operation Generation',struck 
+                      against the British Second and Frist Armies to the south of Ypres salient on 9 April,pushing back but not breaking the line 
+                      around that symbolic town.'Operation Blucher',which commenced on 27 may,overwhelmed Allied forces on the Chemin des Dames and 
+                       saw German troops reaching the River marne,which they had last crossed in 1914,before they were halted on its banks.</p>
+                </div>
+                <img src="\static\articlepic15.jpg" alt="Article Image 5" class="article-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 History of War. All rights reserved.</p>
+    </div>
+</body>
+</html>

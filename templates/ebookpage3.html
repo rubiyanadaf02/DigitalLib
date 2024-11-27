@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Layout with 10 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdd2a3; /* Soft peach background */
+        }
+
+        .ebook-container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font: 0.1em;
+            position: relative;
+            padding-bottom: 80px; /* Ensure space for footer */
+        }
+
+        .ebook-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .ebook-image {
+            width: 70%;
+            background-color: #fdd2a3; /* Soft peach background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .ebook-content {
+            width: 90%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ebook-content h2 {
+            color: #ff1b4c; /* Vivid pink text */
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        .page-container {
+            padding: 10px;
+
+            font: 0.1em;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd2a3;
+            position: relative;
+        }
+
+        .page-pair {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-pair.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page {
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 20px; /* Spacing between pages */
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: #fdd2a3; /* Soft peach background */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 2px solid #ff1b4c; /* Vivid pink border */
+            margin-top: 20px; /* Add space above the controls */
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .icon-button i {
+            color: #ff1b4c; /* Vivid pink icons */
+            font-size: 30px;
+        }
+
+        .icon-button:hover i {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+            transform: scale(1.2);
+        }
+
+        .icon-button:disabled i {
+            color: #ccc;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #ff1b4c; /* Vivid pink text */
+            transition: color 0.3s;
+        }
+
+        .page-number:hover {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff1b4c; /* Vivid pink background */
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <div class="ebook-header">
+            <div class="ebook-image">
+                <img src="\static\ebook3.jpg" alt="Book Image">
+            </div>
+            <div class="ebook-content">
+                <h2>Sea of Shadows<br>By Kelley Armstrong</h2>
+                <p>In this dark fantasy trilogy opener by a #1 New York Times–bestselling author,<br> 
+                    twin sisters prepare to fight shadows to save their empire.<br>
+                    In the Forest of the Dead, where the empire’s worst criminals are exiled,<br> 
+                    twin sisters Moria and Ashyn are charged with a dangerous task. 
+                    For they are the Keeper and the Seeker, and each year they must quiet the enraged souls of the damned. 
+                    Only this year, the souls will not be quieted.</p>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="pages-wrapper">
+                <div class="page-pair active" id="pair1">
+                    <div class="page" id="page1">
+                        <p>5:19 P.M.<br><br> 
+                            December 23 <br><br> 
+                             
+                            “Screw you, Bing Crosby.” <br><br> 
+                            Darby Thorne was six miles up Backbone Pass when her windshield 
+                            wiper broke, and that bass-baritone voice was just kicking into the 
+                            second chorus. It was official: he’d be getting his white Christmas. He 
+                            could shut up about it now.<br><br>  
+                            She thumbed the radio dial (nothing else but static) and watched 
+                            her left wiper blade flap like a fractured wrist. She considered pulling 
+                            over to duct-tape it, but there was no highway shoulder—just walled 
+                            embankments of dirty ice crowding her right and left. She was afraid 
+                            to stop anyway.
+                            </p>
+                    </div>
+                    <div class="page" id="page2">
+                        <p>The snowflakes had been big and soppy when she’d 
+                            blown through Gold Bar forty minutes ago, but they’d grown smaller 
+                            and grittier as her altitude climbed.<br><br> They were hypnotic now in her rac- 
+                            ing headlights, a windshield of stars smearing into light speed. 
+                            chains mandatory, the last sign she’d seen had warned.<br> 
+                            Darby didn’t own snow chains. Not yet, at least. This was her 
+                            sophomore year at CU-Boulder and she’d never planned on venturing 
+                            any farther off campus than Ralphie’s Thriftway. <br><br>
+                            She rememberedwalking back from there last month, half-drunk with a gaggle of half 
+                            friends from her dorm, and when one of them asked her (only half 
+                            giving a shit) where she planned to go for Christmas break, Darby had 
+                            answered bluntly that it would require an act of God himself to make 
+                            her come back home to Utah.
+                        </p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair2">
+                    <div class="page" id="page3">
+                        <p>And apparently he’d been listening, because he’d blessed Darby’s 
+                            mother with late-stage pancreatic cancer. 
+                            She’d learned this yesterday. 
+                            Via text message.<br><br> 
+                            Scrape-scrape. The bent wiper blade slapped the glass again, but the 
+                            snowflakes were dry enough, and the car’s speed fast enough, that the 
+                            windshield stayed clear. <br>The real problem was the accumulating snow 
+                            on the road. The yellow lane markers were already hidden by several 
+                            inches of fresh white, and periodically Darby felt her Honda Civic’s 
+                            chassis rake the surface.<br><br> The sound returned like a wet cough, a little 
+                            worse every time. On the last one, she’d felt the steering wheel vibrate 
+                            between her knuckled fingers. Another inch of powder and she’d be 
+                            stranded up here, nine thousand feet above sea level with a quarter 
+                            tank of gas, no cell coverage, and only her troubled thoughts for com- 
+                            pany.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair3">
+                    <div class="page" id="page5">
+                        <p>And the brassy voice of Bing Crosby, she supposed. He crooned 
+                            the final chorus as Darby took a sip of warm Red Bull. 
+                            Scrape-scrape. <br><br>
+                            The entire drive had been like this—a blurry, bloodshot charge 
+                            through miles of foothills and scrub plains. No time to stop. All she’d 
+                            eaten today was ibuprofen. She’d left her desk lamp on in her dorm 
+                            room, but she’d only noticed this as she left the Dryden parking lot— 
+                            too far to turn back. <br><br>Stomach acid in her throat. Pirated Schoolyard 
+                            Heroes and My Chemical Romance tracks looping on her (now dead) 
+                            iPod Touch. Racing green signboards with faded fast food decals.<br> 
+                            Boulder had vanished in her rearview mirror around 3:00 p.m., and 
+                            then the foggy skyline of Denver with its fleet of grounded jets, and fi- 
+                            nally little Gold Bar behind a screen of falling snowflakes.</p>
+                    </div>
+                    <div class="page" id="page6">
+                        <p>Bing Crosby’s “White Christmas” faded, and the next holiday song 
+                            cued up. She’d heard them all twice now.<br><br> 
+                            Her Honda bucked sharply left. Red Bull splashed in her lap. The 
+                            steering wheel went rigid in her grip and she fought it for a stomach- 
+                            fluttery second (turn into the skid, turn into the skid) before twisting the 
+                            vehicle back under control, still moving forward and uphill—but
+                            losing speed. Losing traction. <br><br>
+                            “No, no, no.” She pumped the gas.<br> 
+                            The all-weather tires gripped and released in the sludgy snow, heav- 
+                            ing the car in violent contractions. Steam sizzled off the hood. 
+                            “Come on, Blue—”
+                            
+                            </p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair4">
+                    <div class="page" id="page7">
+                        <p>She’d called this car Blue since she got it in high school.<br>  Now she 
+                            feathered the gas pedal, searching for the sensory feedback of trac- 
+                            tion. Twin spurts of snow kicked up in her rearview mirror, lit vivid red 
+                            by her taillights. <br> <br> A harsh rattling sound—Blue’s undercarriage 
+                            scraping the snow’s surface again. The car struggled and fishtailed, 
+                            half boat now, and— <br> <br> 
+                            Scrape— <br> 
+                            The left wiper blade snapped off and twirled away. 
+                            Her heart sank.<br>  “Oh shit.”</p>
+                    </div>
+                    <div class="page" id="page8">
+                        <p>Now the incoming snowflakes stuck to the left hemisphere of her 
+                            windshield, rapidly gathering on the unguarded glass. She’d lost too 
+                            much speed. <br> In seconds, her view of State Route Six had narrowed 
+                            into tunnel vision, and she punched her steering wheel. The horn 
+                            bleated, heard by no one.<br> <br>This is how people die, she realized with a shiver.
+                             In blizzards, people 
+                            get trapped out in rural areas and run out of gas. 
+                            They freeze to death.<br>
+                            This is how people die, she realized with a shiver. In blizzards, people 
+                            get trapped out in rural areas and run out of gas. 
+                            They freeze to death.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair5">
+                    <div class="page" id="page9">
+                        <p>It had been an orange snowplow with cdot 
+                            stenciled on the door,<br> hugging the right lane and spouting a plume of 
+                            ice chips. At least an hour ago. Back when the sun had been out. 
+                            Now it was just a gray lantern slipping behind jagged peaks, and the 
+                            sky was dimming to a bruised purple.<br><br> Frozen fir trees becoming 
+                            jagged silhouettes. The lowlands darkening into lakes of shadow. The 
+                            temperature was four degrees, according to the Shell station sign- 
+                            board she’d passed thirty miles back. Probably colder now.<br><br> 
+                            Then she saw it: a half-buried green sign in a snow berm to her 
+                            right. It crept up on her, catching the glow of her Honda’s dirty head- 
+                            lights in a flash: 365 days since the last fatal accident.
+                            </p>
+                    </div>
+                    <div class="page" id="page10">
+                        <p>The count was probably a few days off due to the snowstorm, but 
+                            she still found it eerie. One year exactly. <br>It made tonight some sort of 
+                            grim anniversary. It felt strangely personal, like one of her gravestone
+                            rubbings. <br>
+                            And behind it, another sign. <br>
+                            rest area ahead.<br><br> 
+                             
+                            *  *  *</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="icon-button" id="prevButton" onclick="updatePagePair('prev')" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="page-number" id="pageNumber">Page 1-2</span>
+            <button class="icon-button" id="nextButton" onclick="updatePagePair('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="footer">
+            <p>Footer Content Here</p>
+        </div>
+    </div>
+    <script>
+        const pagePairs = document.querySelectorAll('.page-pair');
+        let currentIndex = 0;
+
+        function updatePagePair(direction) {
+            if (direction === 'next' && currentIndex < pagePairs.length - 1) {
+                currentIndex++;
+            } else if (direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            document.querySelectorAll('.page-pair').forEach((pair, index) => {
+                pair.classList.toggle('active', index === currentIndex);
+            });
+
+            const scrollAmount = document.querySelector('.page-pair.active').offsetLeft;
+            document.querySelector('.pages-wrapper').scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            document.getElementById('prevButton').disabled = currentIndex === 0;
+            document.getElementById('nextButton').disabled = currentIndex === pagePairs.length - 1;
+            document.getElementById('pageNumber').textContent = `Page ${currentIndex * 2 + 1}-${currentIndex * 2 + 2}`;
+        }
+    </script>
+</body>
+</html>

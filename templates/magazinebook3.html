@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            background-color: #fdd2a3; /* Soft apricot background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;
+            background-color: white;
+        }
+
+        .image-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .image-section img {
+            width: 410px;
+            height: 470px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .image-section h1 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-size: 24px;
+            margin: 0;
+            margin-top: -300px;
+        }
+
+        .content-section {
+            max-height: calc(100vh - 100px); /* Adjusted max-height to fit footer */
+            overflow-y: auto; /* Enable scrolling for the content */
+            margin-bottom: 20px;
+        }
+
+        /* Hide the scrollbar but allow scrolling */
+        .content-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .content-section {
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .article-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-container h2 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            margin-bottom: 10px;
+        }
+
+        .article-container h3 {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 10px;
+        }
+
+        .article-container p {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0;
+            flex: 1; /* Allows the paragraph to take up the remaining space */
+        }
+
+        .article-image {
+            width: 250px;
+            height: 200px;
+            margin-left: 20px;
+            border-radius: 20px;
+        }
+
+        .footer {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Image and Heading -->
+        <div class="image-section">
+            <img src="\static\articlemainpic3.jpg" alt="Top Image">
+            <h1>Architecture NZ<br>Architecture New Zealand is the journal for New Zealand’s architects<h1>
+        </div>
+
+        <!-- Content Section with Articles -->
+        <div class="content-section">
+            <div class="article-container">
+                <div>
+                    <h3></h3>
+                    <p>
+            </p>
+                </div>
+                <img src="\static\articlepic31.jpg" alt="Article Image 1" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3></h3>
+                    <p>
+
+                    </p>
+                  </div>
+                <img src="\static\articlepic32.jpg" alt="Article Image 2" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3></h3>
+                    <p>
+                        
+                    </p>
+                </div>
+                <img src="\static\articlepic33.jpg" alt="Article Image 3" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3></h3>
+                    <p>
+
+                     </p>                
+                </div>
+                <img src="\static\articlepic34.jpg" alt="Article Image 4" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3></h3>
+                    <p>
+                        
+                    </p>
+                </div>
+                <img src="\static\articlepic35.jpg" alt="Article Image 5" class="article-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 British Columbia History. All rights reserved.</p>
+    </div>
+</body>
+</html>

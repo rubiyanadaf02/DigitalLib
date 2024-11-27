@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Signup</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fdd2a3; /* Apricot background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .signup-form h1 {
+            margin-bottom: 10px;
+            color: #ff1b4c; /* Magenta color */
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 4px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff1b4c; /* Magenta color */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-button:hover {
+            background-color: #ff1b4c; /* Darker shade of magenta */
+        }
+
+        .login-link {
+            margin-top: 15px;
+            text-align: center;
+            color: #666666;
+        }
+
+        .login-link a {
+            color: #ff1b4c; /* Magenta color */
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h1>Join to LIBRIO</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="cpass">Confirm Password</label>
+                    <input type="password" id="cpass" name="cpass" required>
+                </div>
+                <button type="submit" class="signup-button"><a href="/login/">Sign Up</a></button>
+            </form>
+            <p class="login-link">Already have an account?<a href="/login/">Log in</a></p>
+        </div>
+    </div>
+</body>
+</html>

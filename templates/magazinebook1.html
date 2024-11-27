@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            background-color: #fdd2a3; /* Soft apricot background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;
+            background-color: white;
+        }
+
+        .image-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .image-section img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .image-section h1 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .content-section {
+            max-height: calc(100vh - 100px); /* Adjusted max-height to fit footer */
+            overflow-y: auto; /* Enable scrolling for the content */
+            margin-bottom: 20px;
+        }
+
+        /* Hide the scrollbar but allow scrolling */
+        .content-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .content-section {
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .article-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-container h2 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            margin-bottom: 10px;
+        }
+
+        .article-container h3 {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 10px;
+        }
+
+        .article-container p {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0;
+            flex: 1; /* Allows the paragraph to take up the remaining space */
+        }
+
+        .article-image {
+            width: 250px;
+            height: 200px;
+            margin-left: 20px;
+            border-radius: 20px;
+        }
+
+        .footer {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Image and Heading -->
+        <div class="image-section">
+            <img src="\static\articlemainpic1.jpg" alt="Top Image">
+            <h1>911 TURBO CUP<br>The original and best - 
+                <br>the world's biggest-selling monthly Porsche magazine</h1>
+        </div>
+
+        <!-- Content Section with Articles -->
+        <div class="content-section">
+            <div class="article-container">
+                <div>
+                    <h2>911 & Porsche World</h2>
+                    <h3>Road Racer</h3>
+                    <p>Want to sell more of the particular model?Organise a singlemaker
+                    one model race series! That'll get them in the showrooms.
+                On the racetraccks,too.In order to boost the profile of the the 944 ,
+                Porsche did exactly this in 1986,instigating the 944 Turbo Cup series,
+                which kicked-off in Germany.The championship piggybacked off the ADAC
+                Wurth Supercup Group V weekenda the Nurburgring,the Avus in Berlin,the
+                Hockenheimring,the Norising at Nuremburg plus a one-off race at Mainz 
+                Finthen airport.
+            </p>
+                </div>
+                <img src="\static\articlepic1.jpg" alt="Article Image 1" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    <h2>Classic Car Mart</h2>
+                    <h3>The Final Fling</h3>
+                    <p>The 944 enjoyed success as blistering as its stills. After the release of the 
+                    the S2 in 1989,factory bosses made plans to develop the model even further.
+                    The next-gen 944 wasset to wear the S3 designations,but so extensive were the proposed
+                     changes,it became clear the resulting car would be more or less an entirely new Porsche.
+                    with the more or less an entirely new porsche.<br>With this in mind,
+                    the decision was made to forge ahead with a path that followed the chosen route,
+                    but ended with a fresh model. Adopting its development programme codename,the 968 was bron.</p>
+                </div>
+                <img src="\static\articlepic2.jpg" alt="Article Image 2" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    <h2>911 & Porsche</h2>
+                    <h3>The Next Evolution</h3>
+                    <p>The proud owner of a recently restored 1986 944 Turbo,and being a big fan of 
+                     of the models in Porsche's transaxle family of products,the opportunity of the 
+                     thirtieth anniversary of the 968 - pitched as "the next evolution" in the manufacturer's
+                    period marketing materials,but actually being the evolutionina in a line of four-cylinder,front-
+                    engined, water-cooled Porsche sports cars starting with the 924 in the mid-1970s-
+                    filled me with exitement.<br>In truth,any opportunity to shout about the merits of this largely 
+                    unheared-of Stuttgart speed machine is good enough,but it's greate to have been able to pull together 
+                    a comprehensive look at the different flavours of 968.</p>
+                </div>
+                <img src="\static\articlepic3.jpg" alt="Article Image 3" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    <h2>911 & porsche</h2>
+                    <h3>Sport of Kings</h3>
+                    <p>When we were compiling our list 2022's best buys with specific price points in mind and,
+                    subsequently,when we attempted to reduce the number of selected Porsches into a managable number 
+                    corrsponding to the available column inches this magazine has to offer,one model refused to be dismissed.<br>
+                    The 968 Sport.It's a modern classic we've raved avout in recent issues of 911 & Porsche World and,
+                    with the 968's thirthiet anniversary celebrations now coming to a close,we considered this buying themed 
+                    issue of the magazine the perfect forum to round out our own honouring of this brilliant sports car.</p>                
+                </div>
+                <img src="\static\articlepic4.jpg" alt="Article Image 4" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    <h2>911 & porsche</h2>
+                    <h3>Sporting life</h3>
+                    <p>If you've been around enthusiastowned vehicles long enough,you'll have heard someone say "cars find me"
+                    when describing how they've come by the fourwheeler(s) on their driveway.it's easy to dismiss such a claim,
+                   but I'm living proof it holds true - though I actively went on the hunt for a Turbo found me,so to speak.<br>
+                 This is the most recent addition to furr's Fleet,which now stand at fifteen cars spanning a wide variety of makes 
+                 and models,from a Rolls-Royce Silver Shadow II to an exwor British Touring Vauxhall cavalier GSi.As was the case with my
+                 968 when it came to buying most of the cars I own,I searched high and low until i found what i was looking for.
+                 in contrast,the 968 arrived at my door unannounced.I'm not talking figuratively.</p>
+                </div>
+                <img src="\static\articlepic5.jpg" alt="Article Image 5" class="article-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 911 Turbo Cup. All rights reserved.</p>
+    </div>
+</body>
+</html>

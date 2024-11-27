@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Store</title>
+    <style>
+         body {
+            font-family:"Roboto Condensed";
+            background-color: #Fdd2a3;
+            margin: 0;
+            padding: 0;
+        }
+        /* Header */
+        header {
+            background-color: #333;
+            padding: 30px 0;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        header:hover {
+            background-color: #111;
+        }
+
+        header .logo {
+            font-size: 24px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        nav {
+            flex: 1; /* Make the nav take available space */
+            display: flex;
+            justify-content: center; /* Center the nav items */
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative; /* Make parent position relative */
+        }
+        nav ul li {
+            margin: 0 10px; /* Center spacing between items */
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 15px;
+            transition: color 0.3s;
+            position: relative; /* For pseudo-element */
+        }
+        nav ul li a:hover {
+            color: #fdd2a3;
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none; /* Hide dropdown by default */
+            position: absolute;
+            left: 0;
+            top: 100%; /* Position below the parent item */
+            background-color: #444; /* Background color for dropdown */
+            padding: 10px 0;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul li:hover ul {
+            display: block; /* Show dropdown on hover */
+        }
+
+        nav ul li ul li {
+            width: 200px; /* Set width for dropdown items */
+        }
+
+        nav ul li ul li a {
+            padding: 8px 15px; /* Padding for dropdown items */
+            white-space: nowrap; /* Prevent text wrapping */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+
+        nav ul li ul li a:hover {
+            background-color: #666; /* Background color on hover for dropdown */
+        }
+        .container {
+            width: 900px;
+            margin-top: 200px;
+            padding: 10px;
+            margin: auto;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        .book {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 20px;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        .book:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .book img {
+            width: 80px;
+            float: inline-start;
+            margin-right: 20px;
+            margin-inline: 5px 0;
+        }
+        .book-title {
+            position: relative;
+            left: 2%; /* Adjust the value as needed */
+            font-size: 1.5em;
+            margin-inline-start: 100px 0;
+            transition: transform 0.3s;
+        }
+        .book-author {
+            position: relative;
+            left: 2%; /* Adjust the value as needed */
+            font-size: 1em;
+            color: #555;
+        }
+        /* Footer */
+        footer {
+            background-color: #d1d1d1;
+            color: #000000;
+            padding: 50px 20px;
+            text-align: center;
+        }
+       .footer-heading {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+       .footer-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+       .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+       .footer-links a {
+            color: #868585;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .buy-button {
+            position: relative;
+            left: 2%; /* Adjust the value as needed */
+            background: #ff1b4c;
+            color: #fff;
+            padding: 10px 10px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .buy-button:hover {
+            transform: scale(1.1);
+            background: #fdd2a3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">LIBRIO</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li><a href="#ebooks">Ebooks</a>
+                    <ul>
+                        <li><a href="{% url 'ebook' %}">New Releases</a></li>
+                        <li><a href="{% url 'ebook' %}">Best Sellers</a></li>
+                        <li><a href="{% url 'ebook' %}">Genres</a></li>
+                        <li><a href="{% url 'ebook' %}">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#audiobooks">Audiobooks</a>
+                    <ul>
+                        <li><a href="{% url 'audio' %}">New Releases</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Genres</a></li>
+                        <li><a href="#">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#magazines">Magazines</a>
+                    <ul>
+                        <li><a href="{% url 'magazine' %}">Latest Issues</a></li>
+                        <li><a href="#">Popular Magazines</a></li>
+                        <li><a href="#">Categories</a></li>
+                    </ul>
+                </li>
+                <li><a href="#newspapers">Newspapers</a>
+                    <ul>
+                        <li><a href="{% url 'newpaper' %}">Top Stories</a></li>
+                        <li><a href="#">Daily Editions</a></li>
+                        <li><a href="#">Archives</a></li>
+                    </ul>
+                </li>
+                <li><a href="#store">Store</a>
+                    <ul>
+                        <li><a href="{% url 'album' %}">Album</a></li>
+                        <li><a href="{% url 'audiobookstore' %}">Audiobook</a></li>
+                        <li><a href="{% url 'ebookstore' %}">Ebook</a></li>
+                        <li><a href="{% url 'magazinestore' %}">Magazine</a></li> 
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="book">
+            <img src="\static\Magazine1.jpg" alt="Book 1">
+            <div class="book-title">Business Today</div>
+            <div class="book-author">For Managing Tomorrow<br>₹299</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button>
+        </div>
+        <div class="book">
+            <img src="\static\Magazine2.jpg" alt="Book 2">
+            <div class="book-title">The Artist Magazine</div>
+            <div class="book-author">The practical magazine for artists by artists since 1931<br>₹320</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button>
+        </div>
+        <div class="book">
+            <img src="\static\Magazine3.jpg" alt="Book 3">
+            <div class="book-title">Amateur Photographer</div>
+            <div class="book-author">Amateur Photographer is the world's oldest weekly magazine for photography enthusiasts
+            <br>₹234</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button>
+        </div>
+        <div class="book">
+            <img src="\static\Magazine4.jpg" alt="Book 4">
+            <div class="book-title">Twice: The Story of K-Pop’s Greatest Girl Group
+            </div>
+            <div class="book-author">By 
+                Jamie Heal<br>₹699</div>
+            <button class="buy-button">Buy Now</button>
+        </div>    
+        <div class="book">
+            <img src="\static\Magazine5.jpg" alt="Book 3">
+            <div class="book-title">Inside Out</div>
+            <div class="book-author">Inspiring Homes with Heart<br>₹543</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button> 
+    </div>
+        <div class="book">
+            <img src="\static\Magazine6.jpg" alt="Book 3">
+            <div class="book-title">3D World</div>
+            <div class="book-author">The best-selling international magazine for 3D artists<br>₹321</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button>
+    </div>
+        <div class="book">
+            <img src="\static\Magazine7.jpg" alt="Book 3">
+            <div class="book-title">Entrepreneur</div>
+            <div class="book-author">Entrepreneur magazine is the trusted source for growing your 
+                business and offers surefire strategies for success<br>₹210</div>
+                <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                    <span style="color:#fdd2a3">Buy Now</span></a></button>
+    </div>
+        <div class="book">
+            <img src="\static\Magazine8.jpg" alt="Book 3">
+            <div class="book-title">India Today</div>
+            <div class="book-author">News and current affairs magazine<br>₹430</div>
+            <button class="buy-button"><a href="file:///D:/LIBRIO/paymentdetail.html" style="text-decoration: none;">
+                <span style="color:#fdd2a3">Buy Now</span></a></button>
+    </div>              
+<!-- Footer -->
+<footer>
+    <h4 class="footer-heading">Librio official Page</h4>
+    <p class="footer-description">Name:LIBRIO  CEO(Name): Rubiya Nadaf, Ritika Jadhav<br>
+       Registration No.: 765-89-57638 <br>
+       Email:thelibrio@gmail.com</p>
+  
+    <div class="footer-links">
+        <a href="#terms">Terms & Conditions</a>
+        <a href="#privacy">Privacy Policy</a>
+    </div>
+        <p>&copy; 2024 Librio. All rights reserved.</p>
+  </footer>
+</body>
+</html>

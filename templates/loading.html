@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Loading...</title>
+	<style>
+		body {
+			background-color: #ffffff;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			font-family: "Roboto Condensed";
+		}
+		.loading-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.logo {
+			width: 80px;
+			height: 80px;
+			background-image: url('librio-logo.png');
+			background-size: cover;
+			border-radius: 50%;
+			margin-bottom: 20px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			position: relative;
+		}
+		.logo img {
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.loading-text {
+			color: #000000;
+			font-size: 10px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+		.loading-bar-container {
+			width: 200px;
+			height: 5px;
+			background-color: #333;
+			border-radius: 10px;
+			margin-bottom: 20px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+		}
+		.loading-bar {
+			width: 0%;
+			height: 100%;
+			background-color: #ff1b4c;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="loading-container">
+		<div class="logo">
+			<img src="\static\bg.png" alt="icon">
+		</div>
+		<div class="loading-text">Librio Digital Library</div>
+		<div class="loading-bar-container">
+			<div class="loading-bar"></div>
+		</div>
+	</div>
+	<a id="redirect-link" href="{% url 'welcomepage' %}" style="display: none;"></a>
+
+<script>
+    let loadingBar = document.querySelector('.loading-bar');
+    let width = 0;
+    setInterval(() => {
+        width += 2;
+        loadingBar.style.width = `${width}%`;
+        if (width >= 40) {
+            const redirectLink = document.getElementById('redirect-link');
+            window.location.href = redirectLink.href;
+        }
+    }, 100);
+</script>
+
+</body>
+</html>

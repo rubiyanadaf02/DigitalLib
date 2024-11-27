@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed Successfully</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdd2a3;
+            margin: 0;
+            margin-top: 50px;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            animation: fadeIn 1s ease-out;
+            text-align: center;
+        }
+        h2 {
+            color: #ff1b4c;
+            animation: fadeInUp 1s ease-out;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            animation: fadeInAlert 1s ease-out;
+        }
+        .message img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-out;
+        }
+        .btn-home {
+            display: inline-block;
+            background-color: #ff1b4c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+        .btn-home:hover {
+            background-color: #e01446;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInAlert {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Placed Successfully!</h2>
+        <div class="message">
+            <img src="https://via.placeholder.com/100/00FF00/FFFFFF?text=✔" alt="Success Icon">
+            <p>Your order has been successfully placed. Thank you for shopping with us!</p>
+            <a href="{% url 'homepage' %}" class="btn-home">Return to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Optional JavaScript animations or interactions can be added here
+        // For this page, we rely mainly on CSS animations
+    </script>
+</body>
+</html>

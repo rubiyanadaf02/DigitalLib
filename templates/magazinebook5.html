@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            background-color: #fdd2a3; /* Soft apricot background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;
+            background-color: white;
+        }
+
+        .image-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .image-section img {
+            width: 410px;
+            height: 470px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .image-section h1 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-size: 24px;
+            margin: 0;
+            margin-top: -300px;
+        }
+
+        .content-section {
+            max-height: calc(100vh - 100px); /* Adjusted max-height to fit footer */
+            overflow-y: auto; /* Enable scrolling for the content */
+            margin-bottom: 20px;
+        }
+
+        /* Hide the scrollbar but allow scrolling */
+        .content-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .content-section {
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .article-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-container h2 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            margin-bottom: 10px;
+        }
+
+        .article-container h3 {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 10px;
+        }
+
+        .article-container p {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0;
+            flex: 1; /* Allows the paragraph to take up the remaining space */
+        }
+
+        .article-image {
+            width: 250px;
+            height: 200px;
+            margin-left: 20px;
+            border-radius: 20px;
+        }
+
+        .footer {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Image and Heading -->
+        <div class="image-section">
+            <img src="\static\articlemainpic5.jpg" alt="Top Image">
+            <h1>Bake from Scratch<br>A celebration of all things baking<h1>
+        </div>
+
+        <!-- Content Section with Articles -->
+        <div class="content-section">
+            <div class="article-container">
+                <div>
+                    <h3>Sweeter with Strawberries</h3>
+                    <p>STRAWBERRY SHORTCAKE CRUMBLE BARS
+                        Makes 12 bars
+                        With a buttery shortbread base, a light cream cheese filling folded with whipped cream and packed with chopped fresh strawberries, and a sprinkling of crisp shortbread crumbles and freeze-dried strawberries, this shareable shortcake is sure to brighten up anyone's day. Bursting with strawberry flavor, these bars are the perfect springtime dessert.
+                        1 cup (227 grams) unsalted butter, softened
+                        1/3 cup (73 grams) firmly packed light brown sugar
+                        1 large egg (50 grams), room temperature
+                        31½ cups (406 grams) all-purpose flour
+                        1 teaspoon (3 grams) kosher salt
+                        1 teaspoon (4 grams) vanilla extract
+                        8 ounces (226 grams) cream cheese, softened
+                        1 cup (120 grams) confectioners' sugar
+                        1 cup (240 grams) heavy whipping cream
+                        3/4 cup (140 grams) chopped fresh strawberries
+                        1/4 cup (7 grams) crushed freeze-dried strawberries.
+            </p>
+                </div>
+                <img src="\static\articlepic51.jpg" alt="Article Image 1" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3>Cozy Fall Bakes</h3>
+                    <p>BROWNED BUTTER SWEET POTATO BISCUITS
+                        Makes 15 biscuits
+                        Using buttermilk in your biscuits helps the dough rise and creates taller, fluffier biscuits. The subtle tang from the buttermilk pairs beautifully with the browned butter, sage, and sweet potato for a harmony of flavors perfect for fall.
+                        11/4 cups (284 grams) unsalted butter
+                        1 tablespoon (4 grams) packed fresh sage leaves
+                        31½ cups (406 grams) all-purpose flour, plus more for dusting
+                        1 cup (220 grams) cold mashed baked sweet potato
+                        31/4 cups (406 grams) all-purpose flour, plus more for dusting
+                        1 cup (220 grams) cold mashed baked sweet potato
+                        2 tablespoons (24 grams) granulated sugar
+                        1 tablespoon (15 grams) baking powder
+                        1 tablespoon (9 grams) kosher salt
+                        1/2 teaspoon (2.5 grams) baking soda
+                        1/2 cup (120 grams) cold whole buttermilk
+                        1 large egg (50 grams)
+                        1 tablespoon (15 grams) water
+                        Flaked sea salt, to taste
+                        Softened butter, to serve
+                    </div>
+                <img src="\static\articlepic52.jpg" alt="Article Image 2" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3>Cocoa-rich and Minty Fresh</h3>
+                    <p>ITALIAN "MEATBALL" COOKIES
+                        Makes about 21 cookies
+                        These chocolaty delights are often found on the cookie platters in the homes of Italian Americans during the holiday season. They get their name from the resemblance they share with meatballs in sauce.
+                        Cookies:
+                        1/2 cup (113 grams) unsalted butter, softened</p>
+                        1 cup (200 grams) granulated sugar
+                        2 large eggs (100 grams), room temperature
+                        1/2 teaspoon (2 grams) vanilla extract
+                        21/4 cups (281 grams) all-purpose flour
+                        1/2 cup (43 grams) unsweetened cocoa powder
+                        11½ teaspoons (7.5 grams) baking powder
+                        1/2 teaspoon (1.5 grams) kosher salt
+                        1/2 teaspoon (1 gram) ground cinnamon
+                        1/4 teaspoon ground nutmeg
+                        1½ teaspoon ground cloves.</p>
+                </div>
+                <img src="\static\articlepic53.jpg" alt="Article Image 3" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3>Nutty Choco Delux</h3>
+                    <p>PANETTONE COOKIES
+                        Makes about 20 cookies
+                        These tender treats capture the essence of panettone, the Italian holiday sweet bread. Take part in this delightful twist on an Italian classic by blending candied fruits and nuts-essential to the traditional bread-into a rich, buttery cookie dough that bakes to golden perfection. A dip in white chocolate adds a special touch for the holidays.
+                        3/4 cup (170 grams) unsalted butter, softened
+                        2/3 cup (133 grams) granulated sugar
+                        1½ teaspoon (15 grams) kosher salt
+                        1/2 teaspoon (2 grams) vanilla extract
+                        13/4 cups (219 grams) all-purpose flour
+                        1/3 cup (42 grams) peeled roasted chestnuts, chopped
+                        1/4 cup (32 grams) golden raisins, chopped
+                        1/4 cup (45 grams) chopped candied orange peel, plus more for garnish
+                        1/4 cup (32 grams) chopped dried cherries
+                        8 ounces (226 grams) white chocolate, chopped
+                        1 tablespoon (14 grams) coconut oil
+                        Garnish: toasted sliced almonds 
+                     </p>                
+                </div>
+                <img src="\static\articlepic54.jpg" alt="Article Image 4" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3>Better with Butter</h3>
+                    <p>MAILÄNDERLI
+                        Makes about 22 cookies
+                        Recipe and Food Styling by Andie Pilot Photo by Joann Pai
+                        These are the standard Swiss Christmas cookies made by nearly every bakery and every family in the country. Buttery, with a hint of lemon, the taste is a nostalgic reminder of childhood and Christmas for Swiss people throughout the world.
+                        Dough:
+                        1/2 cup plus 1 tablespoon (127 grams) unsalted butter, room temperature
+                        1/2 cup plus 2 tablespoons (124 grams) granulated sugar
+                        3 large egg yolks (56 grams), room temperature
+                        1 teaspoon (2 grams) lemon zest
+                        1½ teaspoon kosher salt
+                        2 cups (250 grams) all-purpose flour, sifted
+                        Glaze:
+                        1 large egg yolk (19 grams), room temperature
+                        1½ teaspoon granulated sugar
+                    </p>
+                </div>
+                <img src="\static\articlepic55.jpg" alt="Article Image 5" class="article-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Bake from Scratch. All rights reserved.</p>
+    </div>
+</body>
+</html>

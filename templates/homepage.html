@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librio - Digital Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrQ6a5P8AqGqMJ0gl9xpl7zUjvgthqEm5LiGvlQ2Mt0LxzK/NiOgpssEsnEkZx+n1h6MQQ0i1VyoibIvA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+      </head>
+      
+    
+    <style>
+         body {
+            font-family: 'Josefin Sans', sans-serif;;
+            font-weight: 300;
+            font-style: normal;
+            background-color: #ffefde;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Hides the vertical scrollbar */
+            width: 100%; /* Ensures full height coverage */
+        }
+        /* Header */
+        header {
+            background-color: #000000;
+            padding: 20px 0;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        header:hover {
+            background-color: #111;
+        }
+
+        header .logo {
+            font-size: 34px;
+            margin-left: 60px;
+            font-weight: bold;
+        }
+        nav {
+            flex: 1; /* Make the nav take available space */
+            display: flex;
+            justify-content: center; /* Center the nav items */
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            position: relative; /* Make parent position relative */
+        }
+        nav ul li {
+            margin: 0 8px; /* Center spacing between items */
+            margin-top: 10px;
+            position: relative;
+            height: 27px;
+
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 80px 9px;
+            transition: color 0.3s;
+            position: relative; /* For pseudo-element */
+        }
+        nav ul li a:hover {
+            color: #ff1b4c;
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none; /* Hide dropdown by default */
+            position: absolute;
+            left: 10px;
+            top: 100%; /* Position below the parent item */
+            background-color:#ff1b4c; /* Background color for dropdown */
+            padding: 20px 0;
+            border-radius: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(138, 138, 138, 0.5);
+        }
+
+        nav ul li:hover ul {
+            display: block; /* Show dropdown on hover */
+        }
+
+        nav ul li ul li {
+            width: 200px; /* Set width for dropdown items */
+        }
+
+        nav ul li ul li a {
+            padding: 5px 11px; /* Padding for dropdown items */
+            white-space: nowrap; /* Prevent text wrapping */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+
+        nav ul li ul li a:hover {
+            background-color: #ffffff; /* Background color on hover for dropdown */
+        }
+        /* Image Section */
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 150px 0;
+            position: relative;
+        }
+
+        .image-section img {
+            width: 600px; /* Set image width */
+            height: 350px; /* Set image height */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin: 7px;
+            margin-top: 3px;
+            border-radius: 5px; /* Add slight border radius */
+        }
+
+        .image-left, .image-right {
+            opacity: 0.4;
+            transform: scale(0.9); /* Slightly smaller */
+        }
+
+        .image-center {
+            opacity: 1;
+            transform: scale(1.1); /* Slightly larger */
+        }
+
+        .image-nav {
+            font-size: 40px;
+            color: #595959;
+            cursor: pointer;
+            z-index: 10;
+            position: fixed;
+        }
+
+        .prev {
+            left: calc(50% - 500px); /* Position left icon */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            left: calc(50% + 520px); /* Position right icon */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .preview {
+            left: calc(50% - 640px); /* Position preview icon */
+            top: calc(50% + 100px);
+            font-size: 30px;
+            color: #000000;
+            cursor: pointer;
+            z-index: 10;
+            position: fixed;
+        }
+
+        /* Image Hover Effect */
+        /* Image Section */
+        .image-section {
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0 50px 0; /* Reduced top margin to decrease gap below header */
+            position: relative;
+            border-radius: 15px 50px 30px 5px;
+        }
+
+       /* Image Descriptions */
+        .image-description {
+          text-align: center;
+          margin-top: 15px; /* Reduced top margin to decrease gap between image and heading */
+        }
+        .image-description h3 {
+            margin-top: 2px;
+            font-size: 24px;
+            color: #333;
+        }   
+        .image-description p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Dotted Progress */
+        .progress-dots {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        .progress-dots span {
+            height: 10px;
+            width: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .progress-dots .active {
+            background-color: #333;
+        }
+        /* Additional Content for Scrolling */
+        .extra-content {
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #d1d1d1;
+            color: #000000;
+            padding: 50px 20px;
+            text-align: center;
+        }
+       .footer-heading {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+       .footer-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+       .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+       .footer-links a {
+            color: #868585;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">LIBRIO</div>
+        <nav>
+            <ul>
+                <li><a href=" ">HOME</a></li>
+                <li><a href="#ebooks">EBOOKS</a>
+                    <ul>
+                        <li><a href="{% url 'ebook' %}">New Releases</a></li>
+                        <li><a href="{% url 'ebook' %}">Best Sellers</a></li>
+                        <li><a href="{% url 'ebook' %}">Genres</a></li>
+                        <li><a href="{% url 'ebook' %}">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#audiobooks">AUDIOBOOKS</a>
+                    <ul>
+                        <li><a href="{% url 'audio' %}">New Releases</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Genres</a></li>
+                        <li><a href="#">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#magazines">MAGAZINES</a>
+                    <ul>
+                        <li><a href="{% url 'magazine' %}">Latest Issues</a></li>
+                        <li><a href="#">Popular Magazines</a></li>
+                        <li><a href="#">Categories</a></li>
+                    </ul>
+                </li>
+                <li><a href="#newspapers">NEWSPAPER</a>
+                    <ul>
+                        <li><a href="{% url 'newpaper' %}">Top Stories</a></li>
+                        <li><a href="#">Daily Editions</a></li>
+                        <li><a href="#">Archives</a></li>
+                    </ul>
+                </li>
+                <li><a href="#store">STORE</a>
+                    <ul>
+                        <li><a href="{% url 'album' %}">Album</a></li>
+                        <li><a href="{% url 'audiobookstore' %}">Audiobook</a></li>
+                        <li><a href="{% url 'ebookstore' %}">Ebook</a></li>
+                        <li><a href="{% url 'magazinestore' %}">Magazine</a></li> 
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Image Section -->
+<div class="image-section">
+  <i class="fas fa-chevron-left image-nav prev"></i>
+  <img class="image-left" src="/static/concept1.jpg" alt="Left Image">
+  <img class="image-center" src="/static/concept2.jpg" alt="Center Image">
+  <img class="image-right" src="/static/concept3.jpg" alt="Right Image">
+  <i class="fas fa-chevron-right image-nav next"></i>
+  <i class="fas fa-eye image-nav preview"></i>
+</div>
+
+<div class="image-description">
+  <h3>Image Title</h3>
+  <p>Description of the image goes here.</p>
+</div>
+
+<!-- Progress Dots -->
+<div class="progress-dots">
+  <span class="active"></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Extra Content -->
+<div class="extra-content">
+  <p>Additional content goes here...</p>
+</div>
+
+<!-- Footer -->
+<footer>
+  <h4 class="footer-heading">Librio official Page</h4>
+  <p class="footer-description">Name:LIBRIO  CEO(Name): Rubiya Nadaf, Ritika Jadhav<br>
+     Registration No.: 765-89-57638 <br>
+     Email:thelibrio@gmail.com</p>
+
+  <div class="footer-links">
+      <a href="#terms">Terms & Conditions</a>
+      <a href="#privacy">Privacy Policy</a>
+  </div>
+
+  <p>&copy; 2024 Librio. All rights reserved.</p>
+</footer>
+<script>
+  const images = [
+      '/static/concept1.jpg',  // Replace with your actual image name
+      '/static/concept2.jpg',  // Replace with your actual image name
+      '/static/concept3.jpg',  // Replace with your actual image name
+      '/static/concept4.jpg',  // Replace with your actual image name
+      '/static/concept5.jpg'   // Replace with your actual image name
+  ];
+
+  let currentIndex = 0; // Start with the first image
+
+  const leftImage = document.querySelector('.image-left');
+  const centerImage = document.querySelector('.image-center');
+  const rightImage = document.querySelector('.image-right');
+
+  function updateImages() {
+      leftImage.src = images[(currentIndex - 1 + images.length) % images.length];
+      centerImage.src = images[currentIndex];
+      rightImage.src = images[(currentIndex + 1) % images.length];
+      updateDots();
+  }
+
+  function updateDots() {
+      const dots = document.querySelectorAll('.progress-dots span');
+      dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+      });
+  }
+
+  document.querySelector('.prev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImages();
+  });
+
+  document.querySelector('.next').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImages();
+  });
+
+  document.querySelector('.preview').addEventListener('click', () => {
+      alert("Previewing: " + images[currentIndex]);
+  });
+
+  // Automatically change images every 4 seconds
+  setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImages();
+  }, 3000);
+
+  // Initialize with the first set of images
+  updateImages();
+</script>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ebook Library</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Internal CSS -->
+    <style>
+         body {
+            font-family:"Roboto Condensed";
+            font-weight: 400;
+            font-style: normal;
+            background-color: #ffefde;
+            margin: 0;
+            padding: 0;
+        }
+        /* Header */
+        header {
+            background-color: #333;
+            padding: 30px 0;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        header:hover {
+            background-color: #111;
+        }
+
+        header .logo {
+            font-size: 24px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        nav {
+            flex: 1; /* Make the nav take available space */
+            display: flex;
+            justify-content: center; /* Center the nav items */
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative; /* Make parent position relative */
+        }
+        nav ul li {
+            margin: 0 10px; /* Center spacing between items */
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 15px;
+            transition: color 0.3s;
+            position: relative; /* For pseudo-element */
+        }
+        nav ul li a:hover {
+            color: #fdd2a3;
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none; /* Hide dropdown by default */
+            position: absolute;
+            left: 0;
+            top: 100%; /* Position below the parent item */
+            background-color: #444; /* Background color for dropdown */
+            padding: 10px 0;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul li:hover ul {
+            display: block; /* Show dropdown on hover */
+        }
+
+        nav ul li ul li {
+            width: 200px; /* Set width for dropdown items */
+        }
+
+        nav ul li ul li a {
+            padding: 8px 15px; /* Padding for dropdown items */
+            white-space: nowrap; /* Prevent text wrapping */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+
+        nav ul li ul li a:hover {
+            background-color: #666; /* Background color on hover for dropdown */
+        }
+        .ebook-grid {
+            display: grid;
+            margin-top: 120px;
+            margin-left: 25px;
+            grid-template-columns: repeat(4, 1fr); /* 4 books per row */
+            gap: 20px;
+            margin-bottom: 50px;
+            max-width: 1200px;
+            width: 95%;
+        }
+
+        .ebook {
+            position: relative;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            padding-bottom: 20px;
+        }
+
+        .ebook:hover {
+            transform: scale(1.05);
+        }
+
+        .cover-image {
+            width: 120px;
+            height: 200px;
+            margin-top: 10px;
+            object-fit: cover;
+            border-bottom: 2px solid #ff1b4c; /* Vibrant pinkish-red */
+        }
+
+        .ebook-title {
+            padding: 10px 10px 0 10px; /* Add some space above the title */
+            font-size: 18px;
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-weight: bold;
+        }
+
+        .ebook-description {
+            padding: 0 10px 10px 10px; /* Add padding around the description */
+            font-size: 14px;
+            color: #333; /* Dark text color for readability */
+            margin-top: 5px;
+        }
+
+        .book-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            background-color: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .read-button {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .read-button:hover {
+            background-color: #ff4b6c; /* Brighter pinkish-red */
+            transform: scale(1.05);
+        }
+
+        .read-button:active {
+            transform: scale(0.95);
+        }
+        /* Footer */
+        footer {
+            background-color: #d1d1d1;
+            color: #000000;
+            padding: 50px 20px;
+            text-align: center;
+        }
+       .footer-heading {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+       .footer-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+       .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+       .footer-links a {
+            color: #868585;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">LIBRIO</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li><a href="#ebooks">Ebooks</a>
+                    <ul>
+                        <li><a href="{% url 'ebook' %}">New Releases</a></li>
+                        <li><a href="{% url 'ebook' %}">Best Sellers</a></li>
+                        <li><a href="{% url 'ebook' %}">Genres</a></li>
+                        <li><a href="{% url 'ebook' %}">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#audiobooks">Audiobooks</a>
+                    <ul>
+                        <li><a href="{% url 'audio' %}">New Releases</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Genres</a></li>
+                        <li><a href="#">Authors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#magazines">Magazines</a>
+                    <ul>
+                        <li><a href="{% url 'magazine' %}">Latest Issues</a></li>
+                        <li><a href="#">Popular Magazines</a></li>
+                        <li><a href="#">Categories</a></li>
+                    </ul>
+                </li>
+                <li><a href="#newspapers">Newspapers</a>
+                    <ul>
+                        <li><a href="{% url 'newpaper' %}">Top Stories</a></li>
+                        <li><a href="#">Daily Editions</a></li>
+                        <li><a href="#">Archives</a></li>
+                    </ul>
+                </li>
+                <li><a href="#store">Store</a>
+                    <ul>
+                        <li><a href="{% url 'album' %}">Album</a></li>
+                        <li><a href="{% url 'audiobookstore' %}">Audiobook</a></li>
+                        <li><a href="{% url 'ebookstore' %}">Ebook</a></li>
+                        <li><a href="{% url 'magazinestore' %}">Magazine</a></li> 
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+        <!-- Ebook Grid -->
+    <div class="ebook-grid">
+        <!-- Ebook 1 -->
+        <div class="ebook">
+            <img src="\static\ebook1.jpeg" alt="Ebook Cover 1" class="cover-image">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="ebook-title">The Girl Who Was Taken</p>
+            <p class="ebook-description">A Gripping Psychological Thriller
+            </p>
+            <button class="read-button"><a href="{% url 'ebookpage1' %}" style="text-decoration: none;">
+                <span style="color:#ffffff">Read Now</span></a></button>
+        </div>
+        <!-- Ebook 2 -->
+        <div class="ebook">
+            <img src="\static\ebook2.jpg" alt="Ebook Cover 2" class="cover-image">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="ebook-title">Sea of Shadows</p>
+            <p class="ebook-description">A dark fantasy trilogy</p>
+            <button class="read-button"><a href="{% url 'ebookpage2' %}" style="text-decoration: none;">
+                <span style="color:#ffffff">Read Now</span></a></button>
+            </div>
+        <!-- Ebook 3 -->
+        <div class="ebook">
+            <img src="\static\ebook3.jpg" alt="Ebook Cover 3" class="cover-image">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="ebook-title">No Exit: A Novel</p>
+            <p class="ebook-description">A kidnapped little girl</p>
+            <button class="read-button"><a href="{% url 'ebookpage3' %}" style="text-decoration: none;">
+                <span style="color:#ffffff">Read Now</span></a></button>
+            </div>
+        <!-- Ebook 4 -->
+        <div class="ebook">
+            <img src="\static\ebook4.jpg" alt="Ebook Cover 4" class="cover-image">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="ebook-title">The Chaos of Stars</p>
+            <p class="ebook-description">A captivating novel of first love</p>
+            <button class="read-button"><a href="{% url 'ebookpage4' %}" style="text-decoration: none;">
+                <span style="color:#ffffff">Read Now</span></a></button>
+            </div>
+        <!-- Ebook 5 -->
+        <div class="ebook">
+            <img src="\static\ebook5.jpg" alt="Ebook Cover 5" class="cover-image">
+            <i class="fas fa-book-open book-icon"></i>
+            <p class="ebook-title">Illusions of Fate</p>
+            <p class="ebook-description"> An absolute delight—a magical, dangerous world</p>
+            <button class="read-button"><a href="{% url 'ebookpage5' %}" style="text-decoration: none;">
+            <span style="color:#ffffff">Read Now</span></a></button>
+    </div> 
+</div>
+<!-- Footer -->
+<footer>
+    <h4 class="footer-heading">Librio official Page</h4>
+    <p class="footer-description">Name:LIBRIO  CEO(Name): Rubiya Nadaf, Ritika Jadhav<br>
+       Registration No.: 765-89-57638 <br>
+       Email:thelibrio@gmail.com</p>
+  
+    <div class="footer-links">
+        <a href="#terms">Terms & Conditions</a>
+        <a href="#privacy">Privacy Policy</a>
+    </div>
+    <p>&copy;2024 Librio. All rights reserved.</p>
+  </footer>
+</body>
+</html>

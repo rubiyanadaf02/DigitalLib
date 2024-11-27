@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            background-color: #fdd2a3; /* Soft apricot background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            flex-grow: 1;
+            background-color: white;
+        }
+
+        .image-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .image-section img {
+            width: 410px;
+            height: 470px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .image-section h1 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            font-size: 24px;
+            margin: 0;
+            margin-top: -300px;
+        }
+
+        .content-section {
+            max-height: calc(100vh - 100px); /* Adjusted max-height to fit footer */
+            overflow-y: auto; /* Enable scrolling for the content */
+            margin-bottom: 20px;
+        }
+
+        /* Hide the scrollbar but allow scrolling */
+        .content-section::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .content-section {
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .article-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-container h2 {
+            color: #ff1b4c; /* Vibrant pinkish-red */
+            margin-bottom: 10px;
+        }
+
+        .article-container h3 {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 10px;
+        }
+
+        .article-container p {
+            color: #333; /* Dark text color for readability */
+            margin-bottom: 0;
+            flex: 1; /* Allows the paragraph to take up the remaining space */
+        }
+
+        .article-image {
+            width: 250px;
+            height: 200px;
+            margin-left: 20px;
+            border-radius: 20px;
+        }
+
+        .footer {
+            background-color: #ff1b4c; /* Vibrant pinkish-red */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Image and Heading -->
+        <div class="image-section">
+            <img src="\static\articlemainpic4.jpg" alt="Top Image">
+            <h1>British Columbia History<br>Discover British Columbia's Past!<h1>
+        </div>
+
+        <!-- Content Section with Articles -->
+        <div class="content-section">
+            <div class="article-container">
+                <div>
+                    <h3>Inbox</h3>
+                    <p>In 2023 the Republic of Fiji introduced two new holidays: Girmit Day and Ratu Sir
+                        Lala Sukuna Day. The latter honours the life and accomplishments of Ratu Sir
+                        Lala Sukuna (1888-1958), an influential iTaukei (Indigenous Fijian) chief 
+                        who achieved major land reforms under the British colonial administration.
+                        The former refers to the indenture agreements, known as girmits, that between 
+                        the years 1879 and 1916 bound 60,965 people from India, who became known as Girmitiyas,
+                        to five years of violence and coerced labour in Fiji's colonial sugarcane fields.
+                        Girmit Day and Ratu Sir Lala Sukuna Day reference important people and events in Fiji's
+                        colonial past, a past that-due to intense foreign interest in Fiji-intersected with 
+                        global histories of British imperialism, multinational trade, and plantation agriculture.
+            </p>
+                </div>
+                <img src="\static\articlepic41.jpg" alt="Article Image 1" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3>Decolonizing the culture</h3>
+                    <p>If history is written by the victors, then there comes a point in society when the victims
+                        themselves begin to write their own history. You may not like it, and it may make you uncomfortable,
+                        but it is our truth nonetheless.
+                        May 14, 1879, marks the first day Indians landed on the shores of Fiji. As a result,
+                        Girmit Day, as this day is known, is celebrated yearly in Fiji and throughout the diaspora. 
+                        Every year, crowds of people celebrate girmit and the first arrival of Indians to Fiji.
+                        But when viewed through the lens of decolonization and reconciliation, one must ask, 
+                        "What is is a derivative of the word, the indentured labour agreement.</p>
+                  </div>
+                <img src="\static\articlepic42.jpg" alt="Article Image 2" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3>Violence and Profit</h3>
+                    <p>In 2023 the Republic of Fiji introduced two new holidays: Girmit Day and Ratu Sir Lala Sukuna Day.
+                        The latter honours the life and accomplishments of Ratu Sir Lala Sukuna (1888-1958), 
+                        an influential iTaukei (Indigenous Fijian) chief who achieved major land reforms under
+                        the British colonial administration. The former refers to the indenture agreements,
+                        known as girmits, that between the years 1879 and 1916 bound 60,965 people from India,
+                        who became known as Girmitiyas, to five years of violence and coerced labour in Fiji's 
+                        colonial sugarcane fields. Girmit Day and Ratu Sir Lala Sukuna Day reference important
+                        people and events in Fiji's colonial past, a past that-due to intense foreign interest 
+                        in Fiji-intersected with global histories of British imperialism, multinational trade,
+                        and plantation agriculture.</p>
+                </div>
+                <img src="\static\articlepic43.jpg" alt="Article Image 3" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                   
+                    <h3>After the Rain</h3>
+                    <p>After the rain the grass will shed its moisture, the fog will lift from the trees,
+                        a new light will brighten the sky.
+                        ~Chief Dan George (Tsleil Waututh)
+                        Before beginning a teaching, we are asked to prepare ourselves, clear our minds,
+                        and prepare to listen. As an oral culture, the old people, for our cultural and 
+                        spiritual safety, repeated their stories until in their hearts they knew we were prepared.
+                        You will find repetition here. My grandfather, Adam Jimmy, always said to our mother,
+                        Kay George, especially after she got out of Kuper Island Indian Residential School, 
+                        "Did you hear what I said? Tell me what I just said." She did the same thing to her 
+                        children when we were growing up.
+                     </p>                
+                </div>
+                <img src="\static\articlepic44.jpg" alt="Article Image 4" class="article-image">
+            </div>
+            <div class="article-container">
+                <div>
+                    
+                    <h3>Refracting history</h3>
+                    <p>The fire which destroyed most of the village of Lytton on June 30, 2021, is an event British 
+                        Columbians will not soon forget, a disaster that will likely be studied by historians of the 
+                        future. Poetry can offer a means to capture the human experience during historical events, 
+                        and Burning Sage, the debut collection from Lytton poet Meghan Fandrich, does just that.
+                        Living just outside of town, Fandrich's home was spared, but she lost her downtown business.
+                        Born out of a need to process and then share her emotional response to the fire that shattered 
+                        her life and her community, Fandrich's poems are raw, vulnerable, and honest. </p>
+                </div>
+                <img src="\static\articlepic45.jpg" alt="Article Image 5" class="article-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 British Columbia History. All rights reserved.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Layout with 10 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdd2a3; /* Soft peach background */
+        }
+
+        .ebook-container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font: 0.1em;
+            position: relative;
+            padding-bottom: 80px; /* Ensure space for footer */
+        }
+
+        .ebook-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .ebook-image {
+            width: 70%;
+            background-color: #fdd2a3; /* Soft peach background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .ebook-content {
+            width: 90%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ebook-content h2 {
+            color: #ff1b4c; /* Vivid pink text */
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        .page-container {
+            padding: 10px;
+
+            font: 0.1em;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd2a3;
+            position: relative;
+        }
+
+        .page-pair {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-pair.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page {
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 20px; /* Spacing between pages */
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: #fdd2a3; /* Soft peach background */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 2px solid #ff1b4c; /* Vivid pink border */
+            margin-top: 20px; /* Add space above the controls */
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .icon-button i {
+            color: #ff1b4c; /* Vivid pink icons */
+            font-size: 30px;
+        }
+
+        .icon-button:hover i {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+            transform: scale(1.2);
+        }
+
+        .icon-button:disabled i {
+            color: #ccc;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #ff1b4c; /* Vivid pink text */
+            transition: color 0.3s;
+        }
+
+        .page-number:hover {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff1b4c; /* Vivid pink background */
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <div class="ebook-header">
+            <div class="ebook-image">
+                <img src="\static\ebook4.jpg" alt="Book Image">
+            </div>
+            <div class="ebook-content">
+                <h2>The Chaos of Stars<br>A captivating novel</h2>
+                <p>Egyptian mythology, and family, 
+                    from the #1 New York Times bestselling author of And I Darken<br><br>
+
+                    Isadora’s family is seriously screwed up—which comes with the territory when 
+                    you’re the human daughter of the Egyptian gods Isis and Osiris.<br><br>
+                    
+                    Isadora is tired of her immortal relatives and their ancient mythological drama,
+                     so when she gets the chance to move to California with her brother, 
+                     she jumps on it. But her new life comes with plenty of its own dramatic—and 
+                     dangerous—complications . . .</p>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="pages-wrapper">
+                <div class="page-pair active" id="pair1">
+                    <div class="page" id="page1">
+                        <p>Prologue <br><br>
+ 
+                            When I was a little girl, I still believed I was part of the world’s secret 
+                            magic.<br> 
+                            Mother wrapped her hair elegantly in white cloth. I begged and 
+                            pleaded until she did mine as well. At the river, Mother gathered peb- 
+                            bles and sand, small plants, sun-bleached bones. I splashed along the 
+                            banks, or rode on female hippos if Taweret, my aunt and the goddess 
+                            of childbirth, was with us. <br><br>
+                            But my favorite place to be, even more than in the brilliant sun 
+                            reflecting off the water of the Nile, was with my father. When I was old 
+                            enough to navigate the steep, worn steps by myself, I was there every 
+                            minute Mother allowed. As soon as I finished my morning worship, 
+                            I’d skip straight down. Coloring on the floor next to Father’s knees as 
+                            he nodded and watched things I couldn’t see.
+                            sketched, planned.  
+                            </p>
+                    </div>
+                    <div class="page" id="page2">
+                        <p> My cat, cranky old Ubesti, came down with me sometimes, though 
+                            she much preferred the warm, sunlit stones under the skylights in our 
+                            house. One morning when I was barely thirteen, I decided I needed a 
+                            live model for her newest portrait on my walls. She was in her usual 
+                            spot, mangy fur dull and matted even in the light. I went to pick her 
+                            up, expecting a yowl of protest, but was met instead with a limp, 
+                            lifeless body. <br><br>
+                            My mother immediately knew something was wrong and came into 
+                            the room to find me crying. She consoled me with a hug that soothed 
+                            my hiccupping sobs, and a kiss that made my head stop hurting from 
+                            the tears.
+                            “Don’t worry, Little Heart,” she said. “How would you like Ubesti 
+                            to be yours forever?”
+                         </p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair2">
+                    <div class="page" id="page3">
+                        <p>I nodded, desperate. I’d seen my mother heal sick locals, wit- 
+                            nessed her save a baby others had given up for dead. She was magic. 
+                            Surely bringing my elderly cat back from death would be no
+                            problem—after all, she’d resurrected my father. Death was not a bar- 
+                            rier for Isis. <br><br>
+                            She took Ubesti’s body from my arms and told me to meet her 
+                            downstairs in my room. I nearly tripped in my haste to get there, pac- 
+                            ing with nervous excitement. Even after all the potions and amulets I’d 
+                            helped her with, she’d never done actual spells for me, and at that 
+                            moment I loved her even more than I knew possible.<br>
+                            My father came in, smiling his soft, distant smile, and my mother 
+                            followed him</p>
+                    </div>
+                    <div class="page" id="page4">
+                        <p> beaming and carrying a large jar in her hands. It was 
+                            carved with glyphs, the lid shaped like a cat’s head, all made in 
+                            precious alabaster.<br><br> 
+                            “What’s that?” I asked, eager to see what resurrection required. 
+                            “This is the vessel that will carry Ubesti to the other side, where 
+                            she will wait for you.” Osiris nodded solemnly as my mother handed 
+                            him the jar and he placed it on the large block of stone that I used as a 
+                            table in the middle of the room.<br> 
+                            “Wait—other side? What other side?” <br>
+                            “The afterlife,” my father said, looking at me with pride in his eyes. 
+                            “I am pleased you chose her as a companion for your journey through 
+                            death.”</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair3">
+                    <div class="page" id="page5">
+                        <p>I staggered back, staring in horror at the jar I now realized con- 
+                            tained my cat. “You—she’s not coming back to life?” 
+                            “No, Little Heart, not to this life.” <br>
+                            The world shifted. My childhood rewrote itself, everything chang- 
+                            ing as I realized what this room was, what the person-sized, rectan- 
+                            gular stone box was. “This is a tomb. This is my tomb.” I could barely 
+                            see my parents through my tears, but their smiles hadn’t changed. 
+                            “Of course,” my mother said.<br><br> 
+                            “I’m going to die?” <br>
+                            “Everything dies.” My mother took a few steps toward me, but I 
+                            held up my hands, blocking her. 
+                            “You don’t die! He doesn’t die!” <br>
+                            “No, Little Heart, but you—” <br>
+                            “You’re going to just let me die? And put me in there, all by myself, 
+                            forever?”</p>
+                    </div>
+                    <div class="page" id="page6">
+                        <p>“You’re going to just let me die? And put me in there, all by myself, 
+                            forever?” <br>
+                            “You won’t be alone. You’ll be with your father and all your broth- 
+                            ers and sisters who have gone before you.” <br>
+                            “But I won’t be here!” <br>
+                            “No.” <br>
+                            “You don’t care? That doesn’t make you sad? You’re not going to
+                            do anything to stop it?” <br>
+                            Finally my mother caught on, and her expression softened. “Oh, 
+                            Isadora, when you understand—” 
+                            I ran out of that horrible room. For the first time in my life I did 
+                            understand. All of the stories, the histories I’d been raised on? I had 
+                            no part in them.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair4">
+                    <div class="page" id="page7">
+                        <p> My parents brought me into the world to die. They 
+                            didn’t love me enough to keep me forever—they didn’t even pretend 
+                            like they did. My entire childhood of warmth and love was a drawing 
+                            in the sand—impermanent and fragile and gone in a breath of wind. 
+                            Just like me.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="icon-button" id="prevButton" onclick="updatePagePair('prev')" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="page-number" id="pageNumber">Page 1-2</span>
+            <button class="icon-button" id="nextButton" onclick="updatePagePair('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="footer">
+            <p>Footer Content Here</p>
+        </div>
+    </div>
+    <script>
+        const pagePairs = document.querySelectorAll('.page-pair');
+        let currentIndex = 0;
+
+        function updatePagePair(direction) {
+            if (direction === 'next' && currentIndex < pagePairs.length - 1) {
+                currentIndex++;
+            } else if (direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            document.querySelectorAll('.page-pair').forEach((pair, index) => {
+                pair.classList.toggle('active', index === currentIndex);
+            });
+
+            const scrollAmount = document.querySelector('.page-pair.active').offsetLeft;
+            document.querySelector('.pages-wrapper').scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            document.getElementById('prevButton').disabled = currentIndex === 0;
+            document.getElementById('nextButton').disabled = currentIndex === pagePairs.length - 1;
+            document.getElementById('pageNumber').textContent = `Page ${currentIndex * 2 + 1}-${currentIndex * 2 + 2}`;
+        }
+    </script>
+</body>
+</html>

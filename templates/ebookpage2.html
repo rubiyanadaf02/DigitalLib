@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Layout with 10 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdd2a3; /* Soft peach background */
+        }
+
+        .ebook-container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font: 0.1em;
+            position: relative;
+            padding-bottom: 80px; /* Ensure space for footer */
+        }
+
+        .ebook-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .ebook-image {
+            width: 70%;
+            background-color: #fdd2a3; /* Soft peach background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .ebook-content {
+            width: 90%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ebook-content h2 {
+            color: #ff1b4c; /* Vivid pink text */
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        .page-container {
+            padding: 10px;
+
+            font: 0.1em;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd2a3;
+            position: relative;
+        }
+
+        .page-pair {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-pair.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page {
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 20px; /* Spacing between pages */
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: #fdd2a3; /* Soft peach background */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 2px solid #ff1b4c; /* Vivid pink border */
+            margin-top: 20px; /* Add space above the controls */
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .icon-button i {
+            color: #ff1b4c; /* Vivid pink icons */
+            font-size: 30px;
+        }
+
+        .icon-button:hover i {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+            transform: scale(1.2);
+        }
+
+        .icon-button:disabled i {
+            color: #ccc;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #ff1b4c; /* Vivid pink text */
+            transition: color 0.3s;
+        }
+
+        .page-number:hover {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff1b4c; /* Vivid pink background */
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <div class="ebook-header">
+            <div class="ebook-image">
+                <img src="\static\ebook2.jpg" alt="Book Image">
+            </div>
+            <div class="ebook-content">
+                <h2>Sea of Shadows<br>By Kelley Armstrong</h2>
+                <p>In this dark fantasy trilogy opener by a #1 New York Times–bestselling author,<br> 
+                    twin sisters prepare to fight shadows to save their empire.<br>
+                    In the Forest of the Dead, where the empire’s worst criminals are exiled,<br> 
+                    twin sisters Moria and Ashyn are charged with a dangerous task. 
+                    For they are the Keeper and the Seeker, and each year they must quiet the enraged souls of the damned. 
+                    Only this year, the souls will not be quieted.</p>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="pages-wrapper">
+                <div class="page-pair active" id="pair1">
+                    <div class="page" id="page1">
+                        <p>Ashyn <br>
+                        <br>
+                            One <br>
+                            <br> 
+                            Ashyn sat by the fire, eating pork rolls while feeding meat scraps to 
+                            Tova, the giant yellow hound that never left her side. She gazed out 
+                            the window and watched the spring sun burn away the lace of frost.<br><br> 
+                            Her twin sister, Moria, sauntered in, late for breakfast as always. 
+                            Moria’s wildcat, Daigo, appeared out of nowhere and snatched a 
+                            scrap from under Tova’s nose. <br><br>
+                            Ashyn sighed and Tova sighed, too. Then they just helped them- 
+                            selves to more food and moved over to let Moria and Daigo sit with 
+                            them.<br><br> 
+                            “Finally. I lost it before the first snow fell.” 
+                            “Then perhaps, in future, you ought to be more careful with your 
+                            belongings.” <br><br>
+                            “I can’t help it. I’m forgetful.”
+                            </p>
+                    </div>
+                    <div class="page" id="page2">
+                        <p>Father shook his head. “You’ve never forgotten anything in your 
+                            life, Rya. Who got your blade this time? Another woman needing pro- 
+                            tection from her husband?” <br><br>
+                            “That would be wrong. Blades are for warriors. Ash and I are the 
+                            only exceptions.” She took a bite of her pork. “But if I did give it to 
+                            some poor soul in need, it would be the spirits’ fault. They speak, and 
+                            I must obey.” <br><br>
+                            Their father shared an eye roll with Ashyn. While it was true that the 
+                            girls served the ancestral spirits, it was an excuse Moria used too 
+                            often.<br><br> 
+                            “Waiting so long for weapons isn’t reasonable,” Moria continued. 
+                            “We need a smith. I’m sure there’s a strong young man who could 
+                            take up the task, for the greater good.” She chewed. “How about that 
+                            Kitsune boy?” 
+                            “What’s Gavril done now that you’re volunteering him for 
+                            smithing?” Ashyn asked.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair2">
+                    <div class="page" id="page3">
+                        <p>“Then his ancestors have forgotten him, because he isn’t very good 
+                            at it.” <br><br> 
+                            Ashyn shook her head. 
+                            “Since I won’t have my dagger by morning, I’ll need a knife,” Moria 
+                            said, her voice deceptively casual. “I’m going lizard hunting.” 
+                            “Are you?” Father mused. “Perhaps I’ll come along.” 
+                            “You scare the lizards.”<br><br>  
+                            “No,” he said. “I’ll scare you—away from the forest. Which is where 
+                            you truly plan to go.” <br><br> 
+                            Moria made a face. “Why would I want to go into the forest?” 
+                            Neither Ashyn nor their father replied to that. They both knew what 
+                            Moria had in mind. Tomorrow was the Seeking. Ashyn was the Seeker. 
+                            Having passed her sixteenth summer, she would enter the Forest of 
+                            the Dead for the first time, where she would find the bodies of the 
+                            damned and put their spirits to rest. <br><br> 
+                            “I don’t see why I can’t go,” Moria continued when no one an- 
+                            swered. “I’m the Keeper. I protect the empire from unsettled spirits, 
+                            so it should be my duty to help with the Seeking.”</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair3">
+                    <div class="page" id="page5">
+                        <p>don’t need my little sister to protect me.”<br> 
+                            Moria grumbled. Ashyn knew she hated the reminder that she’d 
+                            been born a half day later. Twins were so rare that their mother had 
+                            gone that long before realizing the ongoing labor pains weren’t merely 
+                            the aftereffects of Ashyn’s birth. <br><br> 
+                            “I’m trained with a blade,” Ashyn continued evenly. “Besides, I have 
+                            Tova. He wouldn’t let anything happen to me.” <br><br> 
+                            On cue, the hound laid his head on her knee. 
+                            “I still don’t like it,” Moria said. <br>
+                            Ashyn leaned against her twin. “I know.”<br><br>  
+                             
+                            Tomorrow Ashyn would conduct the Seeking—her primary role as 
+                            Seeker of Edgewood. There were four pairs of Seekers and Keepers in 
+                            the empire. Two traveled where they were needed, and one stayed at 
+                            court. The last pair was permanently stationed at the most spiritually 
+                            dangerous place in the empire—Edgewood—where they guarded the 
+                            only break in the box-canyon wall that surrounded the Forest of the 
+                            Dead.</p>
+                    </div>
+                    <div class="page" id="page6">
+                        <p>Their forest had always been thick with spiritual energy,<br> from the 
+                            old practice of elder abandonment. After that ended, the empire began 
+                            exiling its criminals here, <br>and the ancestral spirits had fled to the
+                            village at its mouth. That was what made Edgewood so dangerous 
+                            that it needed its own Keeper and Seeker. <br>The village was filled with 
+                            ancestral spirits in constant need of appeasement, and the forest was 
+                            filled with angry spirits in constant need of restraint. <br>
+                            Before the Seeking, there was a full day of rituals to be conducted. 
+                            As they followed the rocky lane to the sanctuary, Ashyn looked at her 
+                            twin sister. Two of the village children walked backward in front of 
+                            Moria. A half dozen more followed behind her.<br> The children were not 
+                            coming along for the ritual, of course, but merely tagging along after 
+                            Moria.
+                            
+                            </p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair4">
+                    <div class="page" id="page7">
+                        <p>Daigo would growl. They’d dance away, grinning, only to come right 
+                            back, chattering like Healer Mabill’s pet magpie. Tell us a story, Moria. 
+                            Show us a trick. Teach us something.<br><br>   
+                            Moria would scowl at the younger children and lob insults at the 
+                            older ones. They still adored her, <br> still followed her through the village 
+                            like stray dogs, knowing a scrap would eventually come. They’d get a 
+                            story or they’d get a trick or they’d get a lesson,<br>  and they’d get smiles, 
+                            too, and kind words, if they earned them. <br> <br> 
+                            “Better run home,” Moria called as they continued down the lane.<br>  
+                            “You know what happens if you get too close to the sanctuary and see</p>
+                    </div>
+                    <div class="page" id="page8">
+                        <p>the rituals.” <br>
+                            “Our eyes will pop!” a boy shouted.<br> 
+                            “Yes. They’ll explode like dried corn in a fire, and you’ll be left with 
+                            holes in your head for your brains to leak out.” <br>
+                            “Eww!” one of the girls said. “And then what?”<br> 
+                            “Then you’ll be walking around with only half your wits, drooling 
+                            and gaping.” She pointed at the oldest boy. “In other words, you’ll end 
+                            up just like Niles over there.”
+                            The children giggled. <br><br>
+                            Moria continued, “If you behave yourselves and stay away from the 
+                            sanctuary, I might tell some stories tonight. But you must stay away. 
+                            Ashyn needs complete silence outside or she’ll forget the words to all 
+                            the chants.” She lowered her voice to a mock whisper. “I think she 
+                            might have gotten too close to a ritual when she was little.”</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair5">
+                    <div class="page" id="page9">
+                        <p>Ashyn made a face at her. Moria tossed back a grin. Despite the in- 
+                            sult, Ashyn knew Moria was doing her a favor—a quiet sanctuary 
+                            would indeed help today. It was the first time she’d conduct the Seek- 
+                            ing rituals alone. <br><br>
+                            “Now, what kind of creature do you want for tonight’s story?” 
+                            Moria asked. “Thunder hawks? Sand dragons? Water horses?”<br><br>
+                            As the children called out suggestions, a small voice whispered be- 
+                            side Ashyn. “Are you scared?”<br><br> 
+                            She looked down at the girl, walking so close Tova had to give her 
+                            room. There were always a couple frightened by Moria’s stories and 
+                            scowls. This one was Wenda, just past her ninth summer. Ashyn 
+                            stroked the girl’s black curls.
+                            </p>
+                    </div>
+                    <div class="page" id="page10">
+                        <p>“I’ve assisted with the rituals many times,” Ashyn said. “It’s not 
+                            frightening.” <br>
+                            “I mean the Seeking. Finding the”—Wenda shuddered—“bodies. 
+                            And the spirits. Momma says when the damned die, they become the 
+                            forsaken and can hurt us.” She looked up, dark eyes glistening. “They 
+                            can hurt you.” <br><br> 
+                            “But they won’t. I’m there to calm them and make sure they are 
+                            buried properly. That takes away their anger. They’ll go to the second 
+                            world and be happy.” <br><br> 
+                            Moria glanced over, her rough voice softening. “Ashyn’s been train- 
+                            ing for this since she was smaller than you. She’s ready.” 
+                            Ashyn wished she shared her sister’s confidence. It was true they’d 
+                            been training most of their lives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="icon-button" id="prevButton" onclick="updatePagePair('prev')" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="page-number" id="pageNumber">Page 1-2</span>
+            <button class="icon-button" id="nextButton" onclick="updatePagePair('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="footer">
+            <p>Footer Content Here</p>
+        </div>
+    </div>
+    <script>
+        const pagePairs = document.querySelectorAll('.page-pair');
+        let currentIndex = 0;
+
+        function updatePagePair(direction) {
+            if (direction === 'next' && currentIndex < pagePairs.length - 1) {
+                currentIndex++;
+            } else if (direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            document.querySelectorAll('.page-pair').forEach((pair, index) => {
+                pair.classList.toggle('active', index === currentIndex);
+            });
+
+            const scrollAmount = document.querySelector('.page-pair.active').offsetLeft;
+            document.querySelector('.pages-wrapper').scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            document.getElementById('prevButton').disabled = currentIndex === 0;
+            document.getElementById('nextButton').disabled = currentIndex === pagePairs.length - 1;
+            document.getElementById('pageNumber').textContent = `Page ${currentIndex * 2 + 1}-${currentIndex * 2 + 2}`;
+        }
+    </script>
+</body>
+</html>

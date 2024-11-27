@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Layout with 10 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdd2a3; /* Soft peach background */
+        }
+
+        .ebook-container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font: 0.1em;
+            position: relative;
+            padding-bottom: 80px; /* Ensure space for footer */
+        }
+
+        .ebook-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .ebook-image {
+            width: 70%;
+            background-color: #fdd2a3; /* Soft peach background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .ebook-content {
+            width: 90%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ebook-content h2 {
+            color: #ff1b4c; /* Vivid pink text */
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        .page-container {
+            padding: 10px;
+
+            font: 0.1em;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd2a3;
+            position: relative;
+        }
+
+        .page-pair {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-pair.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page {
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 20px; /* Spacing between pages */
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: #fdd2a3; /* Soft peach background */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 2px solid #ff1b4c; /* Vivid pink border */
+            margin-top: 20px; /* Add space above the controls */
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .icon-button i {
+            color: #ff1b4c; /* Vivid pink icons */
+            font-size: 30px;
+        }
+
+        .icon-button:hover i {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+            transform: scale(1.2);
+        }
+
+        .icon-button:disabled i {
+            color: #ccc;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #ff1b4c; /* Vivid pink text */
+            transition: color 0.3s;
+        }
+
+        .page-number:hover {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff1b4c; /* Vivid pink background */
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <div class="ebook-header">
+            <div class="ebook-image">
+                <img src="\static\ebook5.jpg" alt="Book Image">
+            </div>
+            <div class="ebook-content">
+                <h2>Illusions of Fates<br>By 
+                    Kiersten White</h2>
+                <p>Downton Abbey meets Cassandra Clare in this lush, romantic fantasy from Kiersten White, 
+                    #1 New York Times bestselling author of And I Darken.<br><br>
+
+                    “Illusions of Fate is an absolute delight—a magical, sparkling, <br>
+                    dangerous world with witty repartee and a romance that will light your heart on fire. Kiersten White’s best yet.”—Stephanie Perkins,
+                     New York Times bestselling author of Anna and the French Kiss</p>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="pages-wrapper">
+                <div class="page-pair active" id="pair1">
+                    <div class="page" id="page1">
+                        <p>One <br><br>
+ 
+                            Dear Mama, <br>
+                            I am most certainly not dead. Thank you for your tender concern. I 
+                            will try to write more often so you don’t have to worry so between let- 
+                            ters. (Because a week’s silence surely means I have fallen prey to a 
+                            wasting illness or been murdered in these boring, gray streets.) 
+                            School is going well. <br>I am excelling in all of my classes. (Appar- 
+                            ently, some things never change, and girls are not challenged in 
+                            Albion in the same way they weren’t on Melei.) My professors are all 
+                            intelligent and kind. (Kind of horrible.) None stand out. (I refuse to 
+                            mention him by name, no matter how many obviously “subtle”
+                            </p>
+                    </div>
+                    <div class="page" id="page2">
+                        <p>questions you ask.) <br>The other students are also quite focused on their 
+                            schooling, and none of us has much time for socializing. Boys and girls 
+                            attend separate classes as well, so no, I have not met many interesting 
+                            young men. (I am neither courting nor being courted. Please stop 
+                            hoping.)<br> 
+                            Tell Aunt Li’ne thank you for the mittens. They are very much 
+                            appreciated in this cold, damp climate I am so unused to. And please 
+                            tell the sun hello and I miss her very much! I also miss you, of course. 
+                            (I do. Very much.) 
+                            All my love, 
+                            Jessamin
+                         </p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair2">
+                    <div class="page" id="page3">
+                        <p>Reading over the letter to my mother,<br> I am so absorbed in my 
+                            head with adding the true statements to my written words that I fail to 
+                            pay attention to the street. <br>I cannot decide which shocks me more— 
+                            nearly being run over by the horse-drawn cart, or the fluid stream of 
+                            cursing in my native tongue that is being directed at me.<br><br> 
+                            I look up, cheeks burning, and meet a pair of black eyes that, com- 
+                            bined with the familiarity of the language, hit me with a longing for 
+                            Melei so deep and painful I can scarcely draw a breath.
+                            The man pauses, obviously surprised to see how dark of skin and 
+                            eyes I am in spite of my school uniform.</p>
+                    </div>
+                    <div class="page" id="page4">
+                        <p>  And so I take the opportunity 
+                            to insult his manhood, his lineage, and his horse in a single, well- 
+                            crafted turn of phrase I haven’t used since my friend Kelen taught it to 
+                            me when I was fourteen. 
+                            He smiles. <br><br>
+                            I smile back.<br> 
+                            Brushing his hand through the air in another gesture so achingly 
+                            familiar it brings tears to my eyes, he clicks his tongue and the cart 
+                            moves on, our near-collision forgotten. <br>
+                            He’s made me crave heat. The sun’s anemic rays pull more 
+                            warmth from me than they offer. I hate Albion, the whole gray country. 
+                            I hate Avebury, a city just as gray, teeming with people but coldly life- 
+                            less.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair3">
+                    <div class="page" id="page5">
+                        <p>No. Homesickness does me no good. Wiping under my eyes, I 
+                            straighten my shoulders and march toward the hotel. I only have a 
+                            couple of hours before my shift to do my reading for tomorrow’s 
+                            classes, and I will not be anything less than the best. I cannot afford it. 
+                            I cut away from the main thoroughfare and find myself in a narrow 
+                            alley. It’s old, the lines not quite vertical as they lean ever so gradually
+                            overhead.<br><br> 
+                            “What’s wrong, chickie bird?” 
+                            I startle, my eyes whipped down from where they traced the line of 
+                            the sky. A man with the thick build, intricate tattoos, and accom- 
+                            panying ripe scent of a dockworker stands directly in front of me.</p>
+                    </div>
+                    <div class="page" id="page6">
+                        <p>“Nothing.” I flash a tight, dismissive smile honed these last few 
+                            months of learning to blend in. “Just passing through.”<br> 
+                            “Nah, don’t do that.” He steps to the side as I do, and his mass 
+                            blocks me from walking by. “Come have a drink with me, yeah? Make 
+                            you feel all better.” <br>
+                            “I have somewhere to be.” <br><br>
+                            His smile broadens, blue eyes nearly lost in the tanned squint 
+                            lines of his face. “You ain’t from ’round here, are you? An island rat, 
+                            that’s what you are.” He reaches out with a meaty hand to touch my 
+                            hair, black as night and waterfall straight, where I have it pulled into a 
+                            bun at the base of my neck.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair4">
+                    <div class="page" id="page7">
+                        <p>“Excuse me.” I back up but he follows, leaning in closer. “Let me 
+                            by.” <br>
+                            “I’ve heard stories about island rats. You can tell me if they’re 
+                            true.”<br>
+                            I lift onto my toes to sprint away when a hand comes down on my 
+                            shoulder. 
+                            “There you are, darling. So sorry I’m late.” <br>
+                            I don’t know this voice, a low tenor with the clipped, stylish vowels 
+                            of the classes I only see when delivering orders to their expensive 
+                            hotel rooms.<br><br> 
+                            I stiffen under his fingers, which are light but steady on my shoul- 
+                            der. Now there are two of them to deal with. I slide my hand into my 
+                            satchel, gripping the handle of the paring knife I borrowed from the 
+                            kitchen and keep with me all the time. The gentleman’s fingers 
+                            tighten. <br>
+                            “Not necessary,” he whispers. 
+                            I turn to look at him—a low, round hat is pulled over his forehead, 
+                            obscuring his eyes. His lips are sly and twisted into a smile over teeth 
+                            far finer than my dockworker friend’s. This man is a porcelain doll 
+                            compared to the brute blocking my path. He’s taller than me but lean, 
+                            all angles in his suit that reeks of money. 
+                            Apparently, the dockworker has the same assessment. “This your 
+                            girl? I don’t think she is.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="icon-button" id="prevButton" onclick="updatePagePair('prev')" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="page-number" id="pageNumber">Page 1-2</span>
+            <button class="icon-button" id="nextButton" onclick="updatePagePair('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="footer">
+            <p>Footer Content Here</p>
+        </div>
+    </div>
+    <script>
+        const pagePairs = document.querySelectorAll('.page-pair');
+        let currentIndex = 0;
+
+        function updatePagePair(direction) {
+            if (direction === 'next' && currentIndex < pagePairs.length - 1) {
+                currentIndex++;
+            } else if (direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            document.querySelectorAll('.page-pair').forEach((pair, index) => {
+                pair.classList.toggle('active', index === currentIndex);
+            });
+
+            const scrollAmount = document.querySelector('.page-pair.active').offsetLeft;
+            document.querySelector('.pages-wrapper').scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            document.getElementById('prevButton').disabled = currentIndex === 0;
+            document.getElementById('nextButton').disabled = currentIndex === pagePairs.length - 1;
+            document.getElementById('pageNumber').textContent = `Page ${currentIndex * 2 + 1}-${currentIndex * 2 + 2}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Layout with 10 Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdd2a3; /* Soft peach background */
+        }
+
+        .ebook-container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font: 0.1em;
+            position: relative;
+            padding-bottom: 80px; /* Ensure space for footer */
+        }
+
+        .ebook-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .ebook-image {
+            width: 70%;
+            background-color: #fdd2a3; /* Soft peach background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .ebook-content {
+            width: 90%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ebook-content h2 {
+            color: #ff1b4c; /* Vivid pink text */
+            margin: 0;
+            transition: color 0.3s;
+        }
+
+        .page-container {
+            padding: 10px;
+
+            font: 0.1em;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd2a3;
+            position: relative;
+        }
+
+        .page-pair {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-pair.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page {
+            width: 100%;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: white;
+            margin-right: 20px; /* Spacing between pages */
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: #fdd2a3; /* Soft peach background */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 2px solid #ff1b4c; /* Vivid pink border */
+            margin-top: 20px; /* Add space above the controls */
+        }
+
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .icon-button i {
+            color: #ff1b4c; /* Vivid pink icons */
+            font-size: 30px;
+        }
+
+        .icon-button:hover i {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+            transform: scale(1.2);
+        }
+
+        .icon-button:disabled i {
+            color: #ccc;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #ff1b4c; /* Vivid pink text */
+            transition: color 0.3s;
+        }
+
+        .page-number:hover {
+            color: #f6a2b6; /* Lighter shade of pink for hover */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff1b4c; /* Vivid pink background */
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <div class="ebook-header">
+            <div class="ebook-image">
+                <img src="\static\ebook1.jpeg" alt="Book Image">
+            </div>
+            <div class="ebook-content">
+                <h2>The Girl Who Was Taken:<br> A Gripping Psychological Thriller</h2>
+                <p>The bestselling author of Twenty Years Later delivers a chilling<br>
+                     thriller where nothing is at it seems and each reveal is more <br>
+                     shocking than the last…right up to the jaw-dropping final twist.</p>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="pages-wrapper">
+                <div class="page-pair active" id="pair1">
+                    <div class="page" id="page1">
+                        <p>The Escape <br>
+                            <br>  
+                            Two Weeks Later <br>
+                            Emerson Bay Forest<br> 
+                            September 3, 2016 <br>
+                            11:54 p.m.<br> 
+                            <br>
+                            She pulled the burlap from her head and gasped for air. It took time 
+                            for her eyes to adjust while amorphous shapes danced in her vision 
+                            and the blackness faded. She listened for his presence but all she 
+                            heard was the splattering rain outside. Dropping the burlap bag to the 
+                            ground, she tiptoed to the bunker door. Surprised to see it opened a 
+                            crack, she put her face to the crevice between the door and the frame 
+                            and looked out into the dark forest as rain pelted the trees.<br> She imag- 
+                            ined a camera lens trained tightly on her eyeball as she peered 
+                            through the splinter in the door, then the 
+                            bunker, and eventually a satellite view of the entire for- 
+                            est. 
+                            </p>
+                    </div>
+                    <div class="page" id="page2">
+                        <p>there was the chance he would be 
+                            waiting for her. But if the open door and the moment free from her 
+                            shackle were an oversight, it was his first misstep and the only oppor- 
+                            tunity she’d had in the last two weeks. This was the first moment she 
+                            found herself untethered from the wall of her cellar.<br> <br>
+                            With her hands trembling and still bound in front of her, she 
+                            pushed open the door.  <br><br>The 
+                            hours of darkness from the cellar came back to her and flashed in her 
+                            mind like a lightning storm. So, too, did the promise she made to her- 
+                            self that if an opportunity for escape appeared, she’d take it. <br><br>
+                            She took a hesitant step out of the bunker. She took a moment to 
+                            bathe in the downpour, to let the water clear the fogginess from her 
+                            mind.</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair2">
+                    <div class="page" id="page3">
+                        <p>she tried to deflect the branches that whipped her face. She 
+                            stumbled on a log and fell into the slippery leaves before forcing her- 
+                            self up again. <br>She had counted the days and thought she’d been miss- 
+                            ing for twelve. Maybe thirteen. Stuck in a dark cellar where her captor 
+                            stowed her and fed her, she may have missed a day when fatigue sent 
+                            her into a long stretch of sleep. Tonight, he moved her to the forest. 
+                           <br> 
+                           <br>
+                            She ran blindly, taking erratic turns that stole from her all sense of 
+                            direction. Finally, she heard the roar of a semi truck as its wheels 
+                            splashed through the wet pavement. <br>
+                            <br>
+                            She stumbled into the middle of the road and on wobbly legs 
+                            chased the lights as though she might catch them. The rain pelted her 
+                            face and matted her hair and drenched her ratty clothing. Barefoot, 
+                            she continued in a push-slap, push-slap gait brought on by the deep</p>
+                    </div>
+                    <div class="page" id="page4">
+                        <p>gash on her right foot—suffered during her frantic march through the 
+                            forest—which trickled a crooked line of blood behind her that the 
+                            storm worked to erase. <br> Driven by panic that he would come from the 
+                            forest, she willed herself on with the sensation that he was near, ready 
+                            to fast-step behind her and pull the sack over her head and bring her 
+                            back to the cellar with no windows.  <br>
+                            A tiny white light far off in the distance. She stag- 
+                            gered toward it until the light splintered in two and grew in size. She 
+                            stayed in the middle of the road and waved her bound hands over her 
+                            head.<br><br>
+                            
+                            The car stopped, wipers throwing water to each side. The driver’s 
+                            door opened. “Are you okay?” the man yelled over the roar of the 
+                            storm.  <br><br>
+                            “I need help,” she said. 
+                            They were the first words she’d spoken in days, her voice raspy and</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair3">
+                    <div class="page" id="page5">
+                        <p>dry. The rain, she finally noticed, tasted wonderful. 
+                            The man walked closer, recognized her. “Good God.<br> The whole 
+                            state’s been looking for you.” He took her under his arm and led her 
+                            to the car, carefully seating her in the front passenger seat. 
+                            “Go!” she said. “He’s coming, I know it.”<br> <br>
+                            The man raced around to the other side, shifting the car into drive 
+                            before his door was closed. He dialed 911 as he sped along Highway 
+                            57.<br> <br>
+                            “Where’s your friend?” he asked.<br> 
+                            The girl looked at him. “Who?” <br>
+                            “Nicole Cutty. The other girl who was taken.”</p>
+                    </div>
+                    <div class="page" id="page6">
+                        <p>The Book Tour <br>
+                            <br>
+                            Twelve Months Later <br>
+                            New York <br>
+                            September 2017 <br>
+                            8:32 a.m. <br>
+                            <br>
+                            Megan McDonald sat spine-straight in the chair and watched Dante 
+                            Campbell read through interview notes without a hitch while a stylist 
+                            dabbed her nose with a powdered brush, and general chaos occurred 
+                            around her as producers shouted orders and lighting changes and the 
+                            time remaining in commercial break. The shoulder shrugs and the <br><br>
+                            deep breaths had done nothing useful, and had actually caused a knot 
+                            to form in her trapezius, which was starting to spasm. Megan startled, 
+                            a quick flinch, when a different makeup artist touched her cheek with a 
+                            brush.<br> 
+                            “Sorry, sweetheart. You’re too shiny. Close.”</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair4">
+                    <div class="page" id="page7">
+                        <p>suddenly it was just Megan sitting in the bright lights across from 
+                            Dante Campbell. <br> 
+                            “Five, four, three, two . . . you’re live,” <br> <br>
+                            Megan stuffed her shaking hands under her thighs. Dante Campbell 
+                            stared into the camera and spoke in the practiced pitch and varied ca- 
+                            dence perfected by morning-show hosts, among which her show was 
+                            the top rated.<br> 
+                            “We all know the harrowing story of Megan McDonald. The all- 
+                            American girl, daughter of Emerson Bay’s sheriff, who was abducted 
+                            in the summer of 2016. One year later, Megan is out now with her 
+                            book, Missing, the true-story account of her abduction and coura- 
+                            geous escape.” Dante Campbell pulled her gaze from the camera and 
+                            smiled at her guest. “Megan, welcome to the show.” <br> 
+                            Megan took a hard swallow of dry nothingness that nearly made her 
+                            choke. “Thank you,” she said.<br>  <br>
+                            “The country and, of course,  What inspired you to finally share it?”</p>
+                    </div>
+                    <div class="page" id="page8">
+                        <p>“It was just time,” Megan said, deciding finally on the answers that 
+                            would best get her out of the bright lights.<br> “I needed to process every- 
+                            thing before I was ready to tell people about it. I’ve had a chance to do 
+                            that, and now I’m ready to tell my story.”<br> 
+                            “Time to process and to heal, I’m sure,”<br> Dante Campbell added. 
+                            Of course, Megan thought. Because, after all, it had been a whole 
+                            year, and certainly such a time frame was sufficient to heal.<br> Surely, a 
+                            full year would make her complete again. Because, if Megan didn’t 
+                            come across as healed and happy and recovered, Dante Campbell— 
+                            queen of morning television—would look wicked while drilling her for 
+                            details.<br><br>
+                            “That too, yes,” Megan said. <br>
+                            “I’m sure something like this takes a long time to get over, and in 
+                            some ways documenting the events in your book was therapeutic.”</p>
+                    </div>
+                </div>
+                <div class="page-pair" id="pair5">
+                    <div class="page" id="page9">
+                        <p>“It was.” Megan smiled with her lips pressed together. <br> It was her 
+                            new smile, the best she could do and so different from the beaming 
+                            pictures she saw the other day when she paged through her senior 
+                            yearbook. Back then, her smile was wide, with straight,<br>  <br>bright teeth 
+                            filling the space between her curved lips. She tried at first, but it was 
+                            too hard to fake that big smile so she came up with this new one. Lips 
+                            together, edges turned up. Happy. People were buying it.<br> <br>
+                            “What can people expect from reading your book?”  <br>
+                            Megan wasn’t completely sure, since she hadn’t written much of 
+                            it—that distinction went to her shrink, who snagged a byline on the 
+                            cover.  <br><br>
+                            “Yes. And the two weeks I spent in captivity. About where I was kept, 
+                            and all my failed attempts to get away. And then about the night I, you 
+                            know, ran out of the forest.”  <br>
+                            “The night you escaped.”</p>
+                    </div>
+                    <div class="page" id="page10">
+                        <p>Dante Campbell also smiled. Her voice was soft. “The man who 
+                            found you on Highway Fifty-Seven.”  <br>
+                            “Yes. He’s my hero. My dad’s hero, too.”  <br>
+                            “I bet. We had Mr. Steinman on the show, not long after your or- 
+                            deal.”  <br>
+                            “It’s no secret the country has fallen in love with you. So many people 
+                            want to know how you’re doing and what’s next for you. Will they get 
+                            any of that from the book? About your plans for the future?” 
+                            Megan pulled her hand from under her thigh and rotated it in the 
+                            air to help her think. “There’s a lot about what’s happened since that 
+                            night, yes.”  <br><br>
+                            “With you and your family?” 
+                            “And with the ongoing investigation?”  <br>
+                            “As much as we know about it, yes.”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="icon-button" id="prevButton" onclick="updatePagePair('prev')" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="page-number" id="pageNumber">Page 1-2</span>
+            <button class="icon-button" id="nextButton" onclick="updatePagePair('next')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="footer">
+            <p>Footer Content Here</p>
+        </div>
+    </div>
+    <script>
+        const pagePairs = document.querySelectorAll('.page-pair');
+        let currentIndex = 0;
+
+        function updatePagePair(direction) {
+            if (direction === 'next' && currentIndex < pagePairs.length - 1) {
+                currentIndex++;
+            } else if (direction === 'prev' && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            document.querySelectorAll('.page-pair').forEach((pair, index) => {
+                pair.classList.toggle('active', index === currentIndex);
+            });
+
+            const scrollAmount = document.querySelector('.page-pair.active').offsetLeft;
+            document.querySelector('.pages-wrapper').scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            document.getElementById('prevButton').disabled = currentIndex === 0;
+            document.getElementById('nextButton').disabled = currentIndex === pagePairs.length - 1;
+            document.getElementById('pageNumber').textContent = `Page ${currentIndex * 2 + 1}-${currentIndex * 2 + 2}`;
+        }
+    </script>
+</body>
+</html>
