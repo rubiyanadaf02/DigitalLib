@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librio - Digital Library</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
-    integrity="sha512-Fo3rlrQ6a5P8AqGqMJ0gl9xpl7zUjvgthqEm5LiGvlQ2Mt0LxzK/NiOgpssEsnEkZx+n1h6MQQ0i1VyoibIvA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-      </head>
-      
-    
+    <!-- Font Awesome for icons (Updated Link) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
          body {
-            font-family: 'Josefin Sans', sans-serif;;
+            font-family: 'Josefin Sans', sans-serif;
             font-weight: 300;
             font-style: normal;
             background-color: #ffefde;
@@ -108,41 +111,115 @@
         nav ul li ul li a:hover {
             background-color: #ffffff; /* Background color on hover for dropdown */
         }
-        /* Image Section */
-        .image-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 150px 0;
-            position: relative;
-        }
 
-        .image-section img {
-            width: 600px; /* Set image width */
-            height: 350px; /* Set image height */
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            margin: 7px;
-            margin-top: 3px;
-            border-radius: 5px; /* Add slight border radius */
-        }
+        .icon a {
+    font-size: 18px;
+    margin-left: 5px; /* Reduced margin for less space between icons */
+    left: 60px;
+    color: #fff;
+}
 
-        .image-left, .image-right {
-            opacity: 0.4;
-            transform: scale(0.9); /* Slightly smaller */
-        }
+.icon a:first-child {
+    margin-right: -23px; /* Ensure the first icon does not have extra margin */
 
-        .image-center {
-            opacity: 1;
-            transform: scale(1.1); /* Slightly larger */
-        }
+}
 
-        .image-nav {
-            font-size: 40px;
-            color: #595959;
-            cursor: pointer;
-            z-index: 10;
-            position: fixed;
-        }
+.icon a:hover {
+    color: #ff1b4c;
+}
+
+/* Search Bar */
+.search-bar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar.show {
+    display: block;
+}
+
+.search-bar input {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    margin-right: 8px; /* Space between input and button */
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    background-color: #007BFF; /* Primary button color */
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+/* Image Section */
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px 0;
+    position: relative;
+    overflow: hidden; /* Prevent images from overflowing during the slide */
+    width: 100%;
+}
+
+/* Image Styling */
+.image-section img {
+    width: 600px;
+    height: 350px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin: 7px;
+    margin-top: 3px;
+    border-radius: 5px; /* Slight border radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add gray shadow */
+}
+
+/* Left and Right Images */
+.image-left, .image-right {
+    opacity: 0.4;
+    transform: scale(0.9); /* Slightly smaller */
+    pointer-events: none; /* Prevent interaction */
+}
+
+/* Center Image */
+.image-center {
+    opacity: 1;
+    transform: scale(1.1); /* Slightly larger */
+}
+
+/* Navigation Arrows */
+.image-nav {
+    font-size: 40px;
+    color: #595959;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.image-nav.left {
+    left: 10px;
+}
+
+.image-nav.right {
+    right: 10px;
+}
+
 
         .prev {
             left: calc(50% - 500px); /* Position left icon */
@@ -163,15 +240,14 @@
             color: #000000;
             cursor: pointer;
             z-index: 10;
-            position: fixed;
+            position: relative;
         }
 
-        /* Image Hover Effect */
         /* Image Section */
         .image-section {
             justify-content: center;
             align-items: center;
-            margin: 60px 0 50px 0; /* Reduced top margin to decrease gap below header */
+            margin: 30px 0 30px 0; /* Reduced top margin to decrease gap below header */
             position: relative;
             border-radius: 15px 50px 30px 5px;
         }
@@ -260,52 +336,60 @@
                 <li><a href=" ">HOME</a></li>
                 <li><a href="#ebooks">EBOOKS</a>
                     <ul>
-                        <li><a href="{% url 'ebook' %}">New Releases</a></li>
-                        <li><a href="{% url 'ebook' %}">Best Sellers</a></li>
-                        <li><a href="{% url 'ebook' %}">Genres</a></li>
-                        <li><a href="{% url 'ebook' %}">Authors</a></li>
+                        <li><a href="{% url 'ebook' %}">NEW RELEASES</a></li>
+                        <li><a href="{% url 'ebook' %}">BEST SELLERS</a></li>
+                        <li><a href="{% url 'ebook' %}">GENRES</a></li>
+                        <li><a href="{% url 'ebook' %}">AUTHORS</a></li>
                     </ul>
                 </li>
                 <li><a href="#audiobooks">AUDIOBOOKS</a>
                     <ul>
-                        <li><a href="{% url 'audio' %}">New Releases</a></li>
-                        <li><a href="#">Best Sellers</a></li>
-                        <li><a href="#">Genres</a></li>
-                        <li><a href="#">Authors</a></li>
+                        <li><a href="{% url 'audio' %}">NEW RELEASES</a></li>
+                        <li><a href="{% url 'audio' %}">BEST SELLERS</a></li>
+                        <li><a href="{% url 'audio' %}">GENRES</a></li>
                     </ul>
                 </li>
                 <li><a href="#magazines">MAGAZINES</a>
                     <ul>
-                        <li><a href="{% url 'magazine' %}">Latest Issues</a></li>
-                        <li><a href="#">Popular Magazines</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="{% url 'magazine' %}">LASTEST ISSUES</a></li>
+                        <li><a href="#">POPULAR</a></li>
+                        <li><a href="#">CATEGORIES</a></li>
                     </ul>
                 </li>
-                <li><a href="#newspapers">NEWSPAPER</a>
+                <li><a href="#newspapers">NEWSPAPERS</a>
                     <ul>
-                        <li><a href="{% url 'newpaper' %}">Top Stories</a></li>
-                        <li><a href="#">Daily Editions</a></li>
-                        <li><a href="#">Archives</a></li>
+                        <li><a href="{% url 'newpaper' %}">TOP STORIES</a></li>
+                        <li><a href="#">DAILY EDITION</a></li>
+                        <li><a href="#">ARCHIVES</a></li>
                     </ul>
                 </li>
                 <li><a href="#store">STORE</a>
                     <ul>
-                        <li><a href="{% url 'album' %}">Album</a></li>
-                        <li><a href="{% url 'audiobookstore' %}">Audiobook</a></li>
-                        <li><a href="{% url 'ebookstore' %}">Ebook</a></li>
-                        <li><a href="{% url 'magazinestore' %}">Magazine</a></li> 
+                        <li><a href="{% url 'album' %}">ALBUM</a></li>
+                        <li><a href="{% url 'audiobookstore' %}">AUDIOBOOK</a></li>
+                        <li><a href="{% url 'ebookstore' %}">EBOOK</a></li>
+                        <li><a href="{% url 'magazinestore' %}">MAGAZINE</a></li>
+                        </ul>
+                        </li>
+                        <li class="icon"><a href="#" id="search-icon"><i class="fas fa-search"></i></a></li>
+                        <li class="icon"><a href="#"><i class="fas fa-user"></i></a></li>
                     </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+                </nav>
+                  <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="Type something...">
+        <button id="searchButton">Go</button>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js" defer></script>
+            </header>
 
 <!-- Image Section -->
 <div class="image-section">
   <i class="fas fa-chevron-left image-nav prev"></i>
-  <img class="image-left" src="/static/concept1.jpg" alt="Left Image">
-  <img class="image-center" src="/static/concept2.jpg" alt="Center Image">
-  <img class="image-right" src="/static/concept3.jpg" alt="Right Image">
+  <img class="image-left" src="/static/homepic1.jpg" alt="Left Image">
+  <img class="image-center" src="/static/homepic2.jpg" alt="Center Image">
+  <img class="image-right" src="/static/homepic3.jpg" alt="Right Image">
   <i class="fas fa-chevron-right image-nav next"></i>
   <i class="fas fa-eye image-nav preview"></i>
 </div>
@@ -332,7 +416,7 @@
 <!-- Footer -->
 <footer>
   <h4 class="footer-heading">Librio official Page</h4>
-  <p class="footer-description">Name:LIBRIO  CEO(Name): Rubiya Nadaf, Ritika Jadhav<br>
+  <p class="footer-description">Name:LIBRIO  Managers: Rubiya Nadaf, Ritika Jadhav<br>
      Registration No.: 765-89-57638 <br>
      Email:thelibrio@gmail.com</p>
 
@@ -345,14 +429,14 @@
 </footer>
 <script>
   const images = [
-      '/static/concept1.jpg',  // Replace with your actual image name
-      '/static/concept2.jpg',  // Replace with your actual image name
-      '/static/concept3.jpg',  // Replace with your actual image name
-      '/static/concept4.jpg',  // Replace with your actual image name
-      '/static/concept5.jpg'   // Replace with your actual image name
+      '/static/homepic1.jpg',  // Replace with your actual image name
+      '/static/homepic2.jpg',  // Replace with your actual image name
+      '/static/homepic3.jpg',  // Replace with your actual image name
+      '/static/homepic4.jpg',  // Replace with your actual image name
+      '/static/homepic5.jpg'   // Replace with your actual image name
   ];
 
-  let currentIndex = 0; // Start with the first image
+    let currentIndex = 0; // Start with the first image
 
   const leftImage = document.querySelector('.image-left');
   const centerImage = document.querySelector('.image-center');
@@ -394,4 +478,27 @@
 
   // Initialize with the first set of images
   updateImages();
+
+  // Search Bar Functionality
+  document.getElementById('search-icon').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      toggleSearchBar();
+  });
+
+  function toggleSearchBar() {
+      const searchBar = document.getElementById('searchBar');
+      searchBar.classList.toggle('show');
+  }
+
+  document.getElementById('searchButton').addEventListener('click', function () {
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (searchTerm) {
+          alert(`Searching for: ${searchTerm}`);
+      } else {
+          alert('Please enter a search term.');
+      }
+  });
+
 </script>
+</body>
+</html>

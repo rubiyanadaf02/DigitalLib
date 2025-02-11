@@ -7,38 +7,42 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fdd2a3;
+            background-color: #ffffff;
             margin: 0;
-            margin-top: 50px;
             padding: 0;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            animation: fadeIn 1s ease-out;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            background-color: #ffe0e0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
             text-align: center;
+            animation: fadeIn 1s ease-out;
         }
         h2 {
             color: #ff1b4c;
+            margin-bottom: 20px;
             animation: fadeInUp 1s ease-out;
         }
         .message {
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
             animation: fadeInAlert 1s ease-out;
         }
         .message img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             margin-bottom: 20px;
             animation: bounce 1s ease-out;
         }
@@ -46,7 +50,7 @@
             display: inline-block;
             background-color: #ff1b4c;
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -58,6 +62,22 @@
         }
         .btn-home:hover {
             background-color: #e01446;
+        }
+        .btn-info {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-info:hover {
+            background-color: #0056b3;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -82,6 +102,41 @@
                 transform: translateY(-15px);
             }
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #141414;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #000000;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -93,10 +148,5 @@
             <a href="{% url 'homepage' %}" class="btn-home">Return to Home</a>
         </div>
     </div>
-
-    <script>
-        // Optional JavaScript animations or interactions can be added here
-        // For this page, we rely mainly on CSS animations
-    </script>
 </body>
 </html>

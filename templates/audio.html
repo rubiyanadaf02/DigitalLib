@@ -2,26 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Audiobook Library</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Internal CSS -->
-    <style>
+    <title>Librio - Digital Library</title>
+    <!-- Font Awesome for icons (Updated Link) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+      <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
          body {
-            font-family:"Roboto Condensed";
-            font-weight: 400;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
             font-style: normal;
             background-color: #ffefde;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Hides the vertical scrollbar */
+            width: 100%; /* Ensures full height coverage */
         }
-             /* Header */
+        /* Header */
         header {
-            background-color: #333;
-            padding: 30px 0;
+            background-color: #000000;
+            padding: 20px 0;
             color: #fff;
             position: relative;
             width: 100%;
@@ -38,8 +46,8 @@
         }
 
         header .logo {
-            font-size: 24px;
-            margin-left: 20px;
+            font-size: 34px;
+            margin-left: 60px;
             font-weight: bold;
         }
         nav {
@@ -50,37 +58,40 @@
         nav ul {
             list-style: none;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             display: flex;
             position: relative; /* Make parent position relative */
         }
         nav ul li {
-            margin: 0 10px; /* Center spacing between items */
+            margin: 0 8px; /* Center spacing between items */
+            margin-top: 10px;
             position: relative;
+            height: 27px;
+
         }
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 20px;
-            padding: 10px 15px;
+            font-size: 15px;
+            padding: 80px 9px;
             transition: color 0.3s;
             position: relative; /* For pseudo-element */
         }
         nav ul li a:hover {
-            color: #fdd2a3;
+            color: #ff1b4c;
         }
 
         /* Dropdown Menu */
         nav ul li ul {
             display: none; /* Hide dropdown by default */
             position: absolute;
-            left: 0;
+            left: 10px;
             top: 100%; /* Position below the parent item */
-            background-color: #444; /* Background color for dropdown */
-            padding: 10px 0;
-            border-radius: 5px;
+            background-color:#ff1b4c; /* Background color for dropdown */
+            padding: 20px 0;
+            border-radius: 10px;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 10px rgba(138, 138, 138, 0.5);
         }
 
         nav ul li:hover ul {
@@ -92,14 +103,70 @@
         }
 
         nav ul li ul li a {
-            padding: 8px 15px; /* Padding for dropdown items */
+            padding: 5px 11px; /* Padding for dropdown items */
             white-space: nowrap; /* Prevent text wrapping */
             transition: background-color 0.3s; /* Transition for hover effect */
         }
 
         nav ul li ul li a:hover {
-            background-color: #666; /* Background color on hover for dropdown */
+            background-color: #ffffff; /* Background color on hover for dropdown */
         }
+
+        .icon a {
+    font-size: 18px;
+    margin-left: 5px; /* Reduced margin for less space between icons */
+    left: 60px;
+    color: #fff;
+}
+
+.icon a:first-child {
+    margin-right: -23px; /* Ensure the first icon does not have extra margin */
+
+}
+
+.icon a:hover {
+    color: #ff1b4c;
+}
+
+/* Search Bar */
+.search-bar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar.show {
+    display: block;
+}
+
+.search-bar input {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    margin-right: 8px; /* Space between input and button */
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    background-color: #007BFF; /* Primary button color */
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
         .audiobook-grid {
             display: grid;
             margin-top: 35px;
@@ -220,45 +287,58 @@
         <div class="logo">LIBRIO</div>
         <nav>
             <ul>
-                <li><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="#ebooks">Ebooks</a>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                <li><a href="#ebooks">EBOOKS</a>
                     <ul>
-                        <li><a href="{% url 'ebook' %}">New Releases</a></li>
-                        <li><a href="{% url 'ebook' %}">Best Sellers</a></li>
-                        <li><a href="{% url 'ebook' %}">Genres</a></li>
-                        <li><a href="{% url 'ebook' %}">Authors</a></li>
+                        <li><a href="{% url 'ebook' %}">NEW RELEASES</a></li>
+                        <li><a href="{% url 'ebook' %}">BEST SELLERS</a></li>
+                        <li><a href="{% url 'ebook' %}">GERNRES</a></li>
+                        <li><a href="{% url 'ebook' %}">AUTHORS</a></li>
                     </ul>
                 </li>
-                <li><a href="#audiobooks">Audiobooks</a>
+                <li><a href="#audiobooks">AUDIOBOOKS</a>
                     <ul>
-                        <li><a href="{% url 'audio' %}">New Releases</a></li>
-                        <li><a href="#">Best Sellers</a></li>
-                        <li><a href="#">Genres</a></li>
-                        <li><a href="#">Authors</a></li>
+                        <li><a href="{% url 'audio' %}">NEW RELEASES</a></li>
+                        <li><a href="#">BEST SELLERS</a></li>
+                        <li><a href="#">GENRES</a></li>
                     </ul>
                 </li>
-                <li><a href="#magazines">Magazines</a>
+                <li><a href="#magazines">MAGAZINES</a>
                     <ul>
-                        <li><a href="{% url 'magazine' %}">Latest Issues</a></li>
-                        <li><a href="#">Popular Magazines</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="{% url 'magazine' %}">LATEST ISSUES</a></li>
+                        <li><a href="{% url 'magazine' %}">POPULAR</a></li>
+                        <li><a href="{% url 'magazine' %}">CATEGORIES</a></li>
                     </ul>
                 </li>
-                <li><a href="#newspapers">Newspapers</a>
+                <li><a href="#newspapers">NEWSPAPERS</a>
                     <ul>
-                        <li><a href="{% url 'newpaper' %}">Top Stories</a></li>
-                        <li><a href="#">Daily Editions</a></li>
-                        <li><a href="#">Archives</a></li>
+                        <li><a href="{% url 'newpaper' %}">TOP STORIES</a></li>
+                        <li><a href="{% url 'newpaper' %}">DAILY EDITION</a></li>
+                        <li><a href="{% url 'newpaper' %}">ARCHIVES</a></li>
                     </ul>
                 </li>
-                <li><a href="#store">Store</a>
+                <li><a href="#store">STORE</a>
                     <ul>
-                        <li><a href="{% url 'album' %}">Album</a></li>
-                        <li><a href="{% url 'audiobookstore' %}">Audiobook</a></li>
-                        <li><a href="{% url 'ebookstore' %}">Ebook</a></li>
-                        <li><a href="{% url 'magazinestore' %}">Magazine</a></li> 
+                        <li><a href="{% url 'album' %}">ALBUM</a></li>
+                        <li><a href="{% url 'audiobookstore' %}">AUDIOBOOK</a></li>
+                        <li><a href="{% url 'ebookstore' %}">EBOOK</a></li>
+                        <li><a href="{% url 'magazinestore' %}">MAGAZINE</a></li> 
                     </ul>
                 </li>
+
+<li class="icon"><a href="#" id="search-icon"><i class="fas fa-search"></i></a></li>
+                        <li class="icon"><a href="#"><i class="fas fa-user"></i></a></li>
+                    </ul>
+                  <div class="search-bar" id="searchBar">
+        <input type="text" id="searchInput" placeholder="Type something...">
+        <button id="searchButton">Go</button>
+        </div>
+        </nav>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js" defer></script>
+            </header>
             </ul>
         </nav>
     </header>
@@ -324,5 +404,26 @@
     </div>
     <p>&copy;2024 Librio. All rights reserved.</p>
   </footer>
+  <script>
+    // Search Bar Functionality
+document.getElementById('search-icon').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    toggleSearchBar();
+});
+
+function toggleSearchBar() {
+    const searchBar = document.getElementById('searchBar');
+    searchBar.classList.toggle('show');
+}
+
+document.getElementById('searchButton').addEventListener('click', function () {
+    const searchTerm = document.getElementById('searchInput').value.trim();
+    if (searchTerm) {
+        alert(`Searching for: ${searchTerm}`);
+    } else {
+        alert('Please enter a search term.');
+    }
+});
+</script>
 </body>
 </html>

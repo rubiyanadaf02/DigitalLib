@@ -32,7 +32,7 @@
         }
 
         .input-group {
-            margin-bottom: 4px;
+            margin-bottom: 10px;
         }
 
         .input-group label {
@@ -63,7 +63,7 @@
         }
 
         .signup-button:hover {
-            background-color: #ff1b4c; /* Darker shade of magenta */
+            background-color: #e60040; /* Darker shade of magenta */
         }
 
         .login-link {
@@ -80,33 +80,59 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="signup-container">
         <div class="signup-form">
-            <h1>Join to LIBRIO</h1>
+            <h1>Join LIBRIO</h1>
+
+            <!-- Display Form Errors -->
+            {% if form.errors %}
+                <div class="error-message">
+                    <p>Please correct the following errors:</p>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <!-- Signup Form -->
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <!-- Form fields -->
                 <div class="input-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
                 </div>
                 <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
                 </div>
                 <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
                 </div>
                 <div class="input-group">
-                    <label for="cpass">Confirm Password</label>
-                    <input type="password" id="cpass" name="cpass" required>
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
                 </div>
-                <button type="submit" class="signup-button"><a href="/login/">Sign Up</a></button>
+                <button type="submit" class="signup-button">Sign Up</button>
             </form>
-            <p class="login-link">Already have an account?<a href="/login/">Log in</a></p>
+            
+
+            <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
         </div>
     </div>
 </body>

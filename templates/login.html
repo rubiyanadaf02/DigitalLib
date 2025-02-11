@@ -27,7 +27,7 @@
 
         .login-form h1 {
             margin-bottom: 20px;
-            color: #ff0084;; /* Magenta color */
+            color: #ff0084; /* Magenta color */
             text-align: center;
         }
 
@@ -60,10 +60,13 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
         }
 
         .login-button:hover {
-            background-color:#ff1b4c; /* Darker shade of magenta */
+            background-color: #e60042; /* Darker shade of magenta */
         }
 
         .signup-link {
@@ -86,17 +89,24 @@
     <div class="login-container">
         <div class="login-form">
             <h1>Login to LIBRIO</h1>
-            <form method="post" enctype="multipart/form-data">
-               {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
+                
                 <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
                 </div>
                 <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
                 </div>
-                <a class="btn btn-primary btn-lg" href="{% url 'homepage' %}" role="button">Log In</a>
+            
+                <!-- Display error message if any -->
+                {% if error_message %}
+                <div class="error-message" style="color: red;">{{ error_message }}</div>
+                {% endif %}
+                
+                <button type="submit" class="login-button">Log In</button>
             </form>
             <p class="signup-link">Don't have an account? <a href="/signup/">Sign up</a></p>
         </div>
