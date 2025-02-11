@@ -3,11 +3,10 @@ import os
 import sys
 
 if __name__ == "__main__":
-    # Set the default settings module for your project
+    # Set the default settings module for your Django project
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website.settings")
-    
+
     try:
-        # Import the Django command-line utility
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
@@ -16,5 +15,4 @@ if __name__ == "__main__":
             "forget to activate a virtual environment?"
         ) from exc
 
-    # Run the command-line utility with the arguments provided
     execute_from_command_line(sys.argv)
